@@ -1,0 +1,18 @@
+<div class="container-block" ng-class="vm.element.selected ? 'selectedContainer' : ''" ng-click="vm.focusContainer(); $event.stopPropagation();"
+     ng-style="{
+           'width': vm.element.style['width'] + vm.element.style['widthUnit'],
+           'height': vm.element.style['height']  + vm.element.style['heightUnit'],
+           'margin-top': vm.element.style['margin-top'] + 'px',
+           'margin-right': vm.element.style['margin-right'] + 'px',
+           'margin-bottom': vm.element.style['margin-bottom'] + 'px',
+           'margin-left': vm.element.style['margin-left'] + 'px',
+           'border': vm.element.style['border']}">
+    <div class="container-element-repeat" ng-repeat="element in vm.element.elements">
+        <text-block ng-if="element.type === 'textbox'" data-number="$index" data-model="vm.element.elements" data-element="element"></text-block>
+        <table-element ng-if="element.type === 'table'" data-number="$index" data-model="vm.element.elements" data-element="element"></table-element>
+    </div>
+
+
+</div>
+
+

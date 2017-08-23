@@ -1,0 +1,41 @@
+<table class="table-element">
+
+    <!--Table Head -->
+    <tr ng-repeat="row in vm.element.tableStructure.head">
+        <th ng-repeat="cell in row"
+            ng-style="{'width': cell.style['width'] + cell.style['widthUnit'],
+                       'height': cell.style['height']  + cell.style['heightUnit'],
+                       'margin-top': cell.style['margin-top'] + 'px',
+                       'margin-right': cell.style['margin-right'] + 'px',
+                       'margin-bottom': cell.style['margin-bottom'] + 'px',
+                       'margin-left': cell.style['margin-left'] + 'px',
+                       'border': cell.style['border'],
+                       'background-color': cell.style['background-color']}">
+            <input ng-model="cell.value" type="text"
+                   ng-click="vm.focusContainer(cell); $event.stopPropagation();"
+                   ng-style="{'text-align': cell.style['text-align'],
+                              'color': cell.style['color'],
+                              'font-size': cell.style['font-size']}"/>
+        </th>
+    </tr>
+
+    <!--Table Body -->
+    <tr ng-repeat="row in vm.element.tableStructure.body">
+        <td ng-repeat="cell in row.row" ng-click="vm.focusContainer(cell, row);$event.stopPropagation();"
+            ng-style="{  'width': cell.style['width'] + cell.style['widthUnit'],
+                         'height': cell.style['height']  + cell.style['heightUnit'],
+                         'margin-top':cell.style['margin-top'] + 'px',
+                         'margin-right': cell.style['margin-right'] + 'px',
+                         'margin-bottom': cell.style['margin-bottom'] + 'px',
+                         'margin-left': cell.style['margin-left'] + 'px',
+                         'background-color':cell.style['background-color'],
+                         'border-width': cell.style['border-width'],
+                         'border-style': cell.style['border-style'],
+                         'border-color': cell.style['border-color']}">
+            <input ng-model="cell.value" type="text"
+                   ng-style="{ 'text-align': cell.style['text-align'],
+                               'color': cell.style['color']}"/>
+        </td>
+    </tr>
+</table>
+

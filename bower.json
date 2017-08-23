@@ -1,0 +1,25 @@
+{
+  "name": "CarlosApp",
+  "authors": [
+    "ProdaikoIvan <prodaikoivan@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/libs"
+  ],
+  "dependencies": {
+    "angular": "^1.6.5",
+    "angular-ui-router": "^1.0.6",
+    "jquery-ui": "^1.12.1",
+    "font-awesome": "^4.7.0",
+    "bootstrap": "^3.3.7",
+    "angular-bootstrap-colorpicker": "^3.0.31"
+  }
+}

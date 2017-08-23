@@ -1,0 +1,128 @@
+<div class="setting-element-container">
+    <h3 class="header-setting-element">Setting</h3>
+
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne" data-toggle="collapse" data-parent="#accordion"
+                 href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <h4 class="panel-title">
+                    Container
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                    <div class="margin-block">
+                        <h4>Margin:</h4>
+                        <div class="element-margin-block">
+                            <div class="row">
+                                <label class="label-margin col-sm-6" for="left-margin">Left</label>
+                                <input id="left-margin" type="number" class="col-sm-6"
+                                       ng-model="vm.style['margin-left']">
+                            </div>
+                            <div class="row">
+                                <label class="label-margin col-sm-6" for="top-margin">Top</label>
+                                <input id="top-margin" type="number" class="col-sm-6"
+                                       ng-model="vm.style['margin-top']">
+                            </div>
+                            <div class="row">
+                                <label class="label-margin col-sm-6" for="right-margin">Right</label>
+                                <input id="right-margin" type="number" class="col-sm-6"
+                                       ng-model="vm.style['margin-bottom']">
+                            </div>
+                            <div class="row">
+                                <label class="label-margin col-sm-6" for="bottom-margin">Bottom</label>
+                                <input id="bottom-margin" type="number" class="col-sm-6"
+                                       ng-model="vm.style['margin-right']">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="padding-block">
+                        <h4>Padding:</h4>
+                        <div class="element-padding-block">
+                            <div class="row">
+                                <label class="label-padding col-sm-6" for="left-padding">Left</label>
+                                <input id="left-padding" type="number" class="col-sm-6"
+                                       ng-model="vm.style['padding-left']">
+                            </div>
+                            <div class="row">
+                                <label class="label-padding col-sm-6" for="top-padding">Top</label>
+                                <input id="top-padding" type="number" class="col-sm-6"
+                                       ng-model="vm.style['padding-top']">
+                            </div>
+                            <div class="row">
+                                <label class="label-padding col-sm-6" for="right-padding">Right</label>
+                                <input id="right-padding" type="number" class="col-sm-6"
+                                       ng-model="vm.style['padding-bottom']">
+                            </div>
+                            <div class="row">
+                                <label class="label-padding col-sm-6" for="bottom-padding">Bottom</label>
+                                <input id="bottom-padding" type="number" class="col-sm-6"
+                                       ng-model="vm.style['padding-right']">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="size-block">
+                        <h4>Size:</h4>
+                        <div class="element-size-block">
+                            <div class="row">
+                                <label class="label-margin col-sm-6" for="width">Width</label>
+                                <input id="width" type="number" ng-model="vm.style.width" class="col-sm-6">
+                            </div>
+                            <div class="row">
+                                <label class="label-margin col-sm-6" for="height">Height</label>
+                                <input id="height" type="number" ng-model="vm.style.height" class="col-sm-6">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="background">
+                        <div class="row">
+                            <label class="col-sm-6">Color</label>
+                            <button class="col-sm-6 btn btn-xs" ng-style="{'background': vm.style['background-color']}"
+                                    colorpicker type="button" colorpicker-position="left"
+                                    ng-model="vm.style['background-color']">Change
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingTwo" class="collapsed" role="button" data-toggle="collapse"
+                 data-parent="#accordion"
+                 href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                <h4 class="panel-title">
+                    Font
+                </h4>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                <div class="panel-body">
+                    <div class="font-align-block">
+                        <h4>Font-align:</h4>
+                        <div class="row">
+                            <label class="radio-inline" ng-repeat="item in vm.elements.textAlign">
+                                <input type="radio" ng-model="vm.style['text-align']" ng-value="item"
+                                       name="inlineRadioOptions" id="inlineRadio1"> {{item}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="font-color">
+                        <div class="row">
+                            <p class="col-sm-6">Color:</p>
+                            <button class="col-sm-6 btn btn-xs" style="background: {{vm.style['color']}}" colorpicker
+                                    type="button" colorpicker-position="bottom" ng-model="vm.style['color']">Change
+                            </button>
+                        </div>
+                    </div>
+                    <div class="font-size-block">
+                        <div class="row">
+                            <label class="col-sm-6" for="top-padding">Font-size</label>
+                            <input type="number" class="col-sm-6"
+                                   ng-model="vm.style['font-size']">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
