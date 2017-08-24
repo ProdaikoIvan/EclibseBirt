@@ -52,6 +52,7 @@
                     column++;
                 }
             });
+            console.log('create');
             elementHelper.element = elementsModel.tableModel(column, 1, headers);
         }
     }

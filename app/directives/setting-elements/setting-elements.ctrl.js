@@ -10,20 +10,21 @@
     function SettingCtrl($scope, settingHelper) {
         var vm = this;
         vm.elements = {
-            textAlign:[
-                'left','center','right'
+            textAlign: [
+                'left', 'center', 'right'
             ]
         };
+        vm.deleteElement = deleteElement;
+        //$scope.setting = settingHelper;
 
 
-        vm.style = settingHelper.element.style;
-
-        console.log(settingHelper.element);
-        $scope.$watch(function() { return settingHelper}, function(newVal, oldVal) {
+        $scope.$watch(function () {return settingHelper}, function (newVal, oldVal) {
             vm.style = newVal.element.style;
-            console.log(newVal);
         }, true);
 
-
+        function deleteElement() {
+            settingHelper.element
+            console.log('delete');
+        }
     }
 })();

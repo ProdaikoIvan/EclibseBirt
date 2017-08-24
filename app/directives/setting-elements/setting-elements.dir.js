@@ -21,13 +21,7 @@
 
         function link(scope, element, attrs) {
 
-            // scope.$watch(function() { return scope.vm.style}, function(newVal, oldVal) {
-            //     console.log(element);
-            //     console.log(newVal);
-            //     // if(oldVal !== undefined && (newVal['margin-left'] !== oldVal['margin-left'] || newVal['margin-right'] !== oldVal['margin-right'])){
-            //     //     console.log('change');
-            //     // }
-            // }, true);
+
         }
     }
 })();

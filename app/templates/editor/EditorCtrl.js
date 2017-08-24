@@ -32,16 +32,22 @@
                         "background-color": '#ffffff'
                     },
                     selected: true,
-                    elements:[]
+                    elements: []
                 }
             ]
         };
 
-        $scope.$watch(function () {return elementHelper.element}, function (table) {
-            for (var i = 0; i < vm.models.container.length; i++) {
-                if (vm.models.container[i].selected) {
-                    vm.models.container[i].elements.push(table);
-                    break;
+        $scope.$watch(function () {
+            return elementHelper.element
+        }, function (table, oldTable) {
+            if (table !== null) {
+                for (var i = 0; i < vm.models.container.length; i++) {
+                    if (vm.models.container[i].selected) {
+                        vm.models.container[i].elements.push(table);
+                        elementHelper.element = null;
+                        console.log(table);
+                        break;
+                    }
                 }
             }
         }, true);

@@ -13,6 +13,7 @@
 
 
         function focusContainer(cell,row) {
+            console.log(cell, row);
             settingHelper.element = cell;
             settingHelper.container = row;
         }

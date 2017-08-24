@@ -3,6 +3,27 @@
 
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
+            <div class="panel-heading" role="tab" class="collapsed" role="button" data-toggle="collapse"
+                 data-parent="#accordion"
+                 href="#collapseElement" aria-expanded="false" aria-controls="collapseElement">
+                <h4 class="panel-title">
+                    Element
+                </h4>
+            </div>
+            <div id="collapseElement" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                <div class="panel-body">
+                    <div class="font-color">
+                        <div class="row">
+                            <p class="col-sm-6">Delete:</p>
+                            <button class="col-sm-6 btn btn-xs" ng-click="vm.deleteElement()" type="button">Delete
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="headingOne" data-toggle="collapse" data-parent="#accordion"
                  href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                 <h4 class="panel-title">
@@ -124,5 +145,4 @@
             </div>
         </div>
     </div>
-</div>
 </div>

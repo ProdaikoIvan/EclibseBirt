@@ -12,7 +12,7 @@
     <!--</div>-->
     <div class="block-paper scrollbar-default" ng-if="vm.tabsList.length > 0">
         <div id="paperList" class="content-paper">
-            <container ng-repeat="container in vm.model.container" data-number="$index" data-model="vm.model.container" data-element="container"></container>
+            <container ng-repeat="container in vm.model.container track by $index" data-number="$index" data-model="vm.model.container" data-element="container"></container>
             </div>
         </div>
     </div>
