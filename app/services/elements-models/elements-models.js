@@ -13,7 +13,8 @@
         return {
             containerModel: containerModel,
             textBoxModel: textBoxModel,
-            tableModel: tableModel
+            tableModel: tableModel,
+            tableModelDataSet:tableModelDataSet
         };
 
 
@@ -46,11 +47,65 @@
                 id: ++idCnt,
                 name: 'textbox',
                 type: 'textbox',
+                value: null,
                 style: defaultStyleModel.textModel(),
                 selected: false,
                 elements: []
             };
 
+        }
+
+        function tableModelDataSet(obj) {
+            function createTable() {
+                var tableStructure = {
+                    head: [],
+                    body: [],
+                    footer: []
+                };
+                var rowBlock = [];
+                obj.header.rows[0].cells.forEach(function (item) {
+                    console.log(item);
+                    var columnItem = {
+                        id: item.id,
+                        rowType: 'header',
+                        value: item.childrens[0].text,
+                        style: defaultStyleModel.tableHeaderModel( obj.header.rows[0].length)
+                    };
+                    rowBlock.push(columnItem);
+                });
+                tableStructure.head.push(rowBlock);
+
+                obj.detail.rows.forEach(function (item) {
+                    var rowBlock = {
+                        style: defaultStyleModel.tableRowModel(),
+                        row: []
+                    };
+                    
+                    item.cells.forEach(function (cell) {
+                        var columnItem = {
+                            id: cell.id,
+                            rowType: 'body',
+                            value: '',
+                            style: defaultStyleModel.tableCellModel()
+                        };
+                        rowBlock.row.push(columnItem);
+                    });
+                    tableStructure.body.push(rowBlock);
+                });
+                return tableStructure;
+            }
+
+            return {
+                id: ++idCnt,
+                name: 'table',
+                type: 'table',
+                tableStructure: createTable(),
+                columnNum: obj.columns.length,
+                rowNum: obj.header.rows.length + obj.detail.rows.length + obj.footer.rows.length,
+                style: {},
+                selected: false,
+                elements: []
+            };
         }
 
         function tableModel(column, row, headerNames) {
@@ -79,7 +134,7 @@
                         var columnItem = {
                             id: ++idCnt,
                             rowType: 'body',
-                            value: i + "=" + j,
+                            value: '',
                             style: defaultStyleModel.tableCellModel()
                         };
                         rowBlock.row.push(columnItem);

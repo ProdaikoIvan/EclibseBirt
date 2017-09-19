@@ -27,10 +27,10 @@
         function compile(element, attributes, transclude){
             return {
                 pre: function (scope) {
-                  console.log(scope.vm.element.name);
+
                 },
                 post: function(scope, element, attributes, controller, transcludeFn){
-                    //$( ".textbox" ).resizable();
+
                 }
             }
         }

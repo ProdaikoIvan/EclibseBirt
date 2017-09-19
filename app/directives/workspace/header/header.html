@@ -1,0 +1,15 @@
+<header class="header-navbar-fixed">
+    <nav>
+        <ul>
+            <li ng-click="vm.openDataSources()"><a href="#">Data Sources</a></li>
+            <li ng-click="vm.openTablesPopup()"><a href="#">Data Set</a></li>
+            <li ng-click="vm.saveReport()" style="float:right"><a class="active" href="#">Save</a></li>
+        </ul>
+    </nav>
+</header>
+
+
+<div id="DataSetTablesModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog"
+     aria-labelledby="gridSystemModalLabel">
+    <div class="dive" ng-include="vm.template"></div>
+</div>

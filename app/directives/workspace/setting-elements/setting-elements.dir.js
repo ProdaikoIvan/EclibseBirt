@@ -11,7 +11,7 @@
         var directive = {
             bindToController: true,
             controller: "SettingCtrl",
-            templateUrl: "directives/setting-elements/setting-elements.html",
+            templateUrl: "directives/workspace/setting-elements/setting-elements.html",
             controllerAs: 'vm',
             link: link,
             restrict: 'AE',

@@ -1,5 +1,7 @@
-<header-directive></header-directive>
-<div class="container-app">
+<loader></loader>
+<header-directive data-tables="vm.tables"></header-directive>
+<!--<div class="container-app">-->
+<div class="container-app" ng-show="vm.tables.length > 0">
     <section class="container-list-element scrollbar-default">
         <list-elements data-model="vm.models"></list-elements>
     </section>

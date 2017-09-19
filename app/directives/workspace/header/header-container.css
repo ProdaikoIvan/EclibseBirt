@@ -34,3 +34,34 @@ li a:hover:not(.active) {
 .active {
     background-color: #4CAF50;
 }
+
+
+ .result-connection> p{
+     margin: 0;
+ }
+.result-connection{
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.up-position,
+.down-position{
+    text-align: center;
+    cursor:pointer;
+}
+.position-container{
+    min-height: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+ .result-connection p {
+     font-weight: 700;
+ }
+.result-connection > .error{
+    color: red;
+}

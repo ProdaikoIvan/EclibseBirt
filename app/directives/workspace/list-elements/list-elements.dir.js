@@ -3,17 +3,17 @@
 
     angular
         .module('startApp')
-        .directive('paperDesign', paperDesign);
+        .directive('listElements', listElements);
 
-    paperDesign.$inject = [];
-    function paperDesign() {
+        listElements.$inject = [];
+    function listElements() {
         var directive = {
             bindToController: true,
-            templateUrl:"directives/paper-view/paper-view.html",
-            controller: "paperCtrl",
+            templateUrl: "directives/workspace/list-elements/list-elements.html",
+            controller: "listElementsCtrl",
             controllerAs: 'vm',
-            replace: true,
             link: link,
+            replace: true,
             restrict: 'AE',
             scope: {
                 model: '='

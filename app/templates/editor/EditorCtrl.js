@@ -5,37 +5,11 @@
         .module('startApp')
         .controller('EditorCtrl', EditorCtrl);
 
-    EditorCtrl.$inject = ['$scope', 'elementHelper'];
+    EditorCtrl.$inject = ['$scope', '$rootScope', 'elementHelper', 'dataServices', 'deleteFac','settingHelper','dataSet'];
 
-    function EditorCtrl($scope, elementHelper) {
+    function EditorCtrl($scope, $rootScope, elementHelper, dataServices, deleteFac, settingHelper,dataSet) {
         var vm = this;
-        vm.name = "12345";
-
-        vm.models = {
-            container: [
-                {
-                    name: 'container',
-                    type: 'container',
-                    style: {
-                        "margin-left": 0,
-                        "margin-top": 0,
-                        "margin-right": 0,
-                        "margin-bottom": 0,
-                        "fontSize": 14,
-                        "font-weight": 600,
-                        "text-align": 'left',
-                        "width": 100,
-                        "widthUnit": '%',
-                        "height": 100,
-                        "heightUnit": '%',
-                        "border": '1px solid #cccccc',
-                        "background-color": '#ffffff'
-                    },
-                    selected: true,
-                    elements: []
-                }
-            ]
-        };
+        $rootScope.loaderFlag = false;
 
         $scope.$watch(function () {
             return elementHelper.element
@@ -45,11 +19,37 @@
                     if (vm.models.container[i].selected) {
                         vm.models.container[i].elements.push(table);
                         elementHelper.element = null;
-                        console.log(table);
                         break;
                     }
                 }
             }
         }, true);
+
+        // $scope.$watch(function () {
+        //     return deleteFac.element
+        // }, function (el, oldTable) {
+        //     if (el === null) {
+        //         return;
+        //     }
+        //     console.log(el);
+        //     for (var i = 0; i < vm.models.container.length; i++) {
+        //         if (vm.models.container[i].selected) {
+        //             for (var j = 0; j < vm.models.container[i].elements.length; j++) {
+        //                 if (vm.models.container[i].elements[j].selected) {
+        //                     console.log(vm.models.container[i].elements.splice(j, 1));
+        //                     console.log(j);
+        //                     deleteFac.element = null;
+        //                     return;
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }, true);
+
+        active();
+        function active()  {
+            vm.models = dataServices.models;
+            console.log(vm);
+        }
     }
 })();

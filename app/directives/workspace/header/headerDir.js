@@ -11,11 +11,11 @@
             bindToController: true,
             controller: "headerCtrl",
             controllerAs: 'vm',
-            templateUrl:"directives/header/header.html",
+            templateUrl:"directives/workspace/header/header.html",
             link: link,
             restrict: 'AE',
-            // replace: true,
             scope: {
+                tables: '='
             }
         };
         return directive;

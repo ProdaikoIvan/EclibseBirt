@@ -5,9 +5,9 @@
         .module('startApp')
         .controller('SettingCtrl', SettingCtrl);
 
-    SettingCtrl.$inject = ['$scope', 'settingHelper'];
+    SettingCtrl.$inject = ['$scope', 'settingHelper','deleteFac'];
 
-    function SettingCtrl($scope, settingHelper) {
+    function SettingCtrl($scope, settingHelper, deleteFac) {
         var vm = this;
         vm.elements = {
             textAlign: [
@@ -23,8 +23,8 @@
         }, true);
 
         function deleteElement() {
-            settingHelper.element
-            console.log('delete');
+            deleteFac.element = settingHelper;
+            console.log(deleteFac.element);
         }
     }
 })();

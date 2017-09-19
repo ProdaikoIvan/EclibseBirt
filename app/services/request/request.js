@@ -7,12 +7,28 @@
 
     request.$inject = ['$http', '$q', 'url'];
 
-    function request($http, $q, url) {
+    function request($http, $q) {
         return {
             dataSet: dataSet,
             request:request
         };
-
+        function request(urlPath, method, data, params) {
+            console.log('urlPath', urlPath);
+            var defer = $q.defer();
+            $http({
+                method: method,
+                url: urlPath,
+                data: data,
+                params: params,
+                withCredentials: true
+            }).then(function (dataResult) {
+                defer.resolve(dataResult);
+                console.log(dataResult);
+            }, function (dataError) {
+                defer.reject(dataError);
+            });
+            return defer.promise;
+        }
         function dataSet() {
             var tables = [
                 {
@@ -71,19 +87,6 @@
 
             return tables;
         }
-        function request(urlPath, method, data) {
-            var defer = $q.defer();
-            console.log(data);
-            $http({
-                method: method,
-                url: urlPath,
-                data: data
-            }).then(function (dataResult) {
-                defer.resolve(dataResult);
-            }, function (dataError) {
-                defer.reject(dataError);
-            });
-            return defer.promise;
-        }
+
     }
 })();

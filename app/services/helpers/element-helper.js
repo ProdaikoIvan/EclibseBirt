@@ -10,7 +10,7 @@
     function elementHelper() {
 
         return {
-            element: {}
+            element: null
         }
     }
 })();

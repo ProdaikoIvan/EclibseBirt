@@ -1,5 +1,5 @@
 <div ng-click="vm.focusContainer(); $event.stopPropagation();" >
-    <input ng-class="vm.element.selected ? 'selectedContainer' : ''" type="text" class="text-box-input {{vm.element.type}}" ng-style="{
+    <input ng-class="vm.element.selected ? 'selectedContainer' : ''" ng-model="vm.element.value" type="text" class="text-box-input {{vm.element.type}}" ng-style="{
            'width': vm.element.style['width'] + vm.element.style['widthUnit'],
            'height': vm.element.style['height']  + vm.element.style['heightUnit'],
            'margin-top': vm.element.style['margin-top'] + 'px',

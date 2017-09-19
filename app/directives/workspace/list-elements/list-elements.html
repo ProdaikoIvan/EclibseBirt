@@ -1,0 +1,14 @@
+<div class="container-list-elements">
+    <h3 class="header-list-box">Elements</h3>
+    <ul>
+        <li ng-click="vm.addContainer()"><a href="#">Container</a></li>
+        <li ng-click="vm.addTextBlock()"><a href="#">Text</a></li>
+        <li data-toggle="modal" data-target="#tablesModal"><a href="#">Table</a></li>
+    </ul>
+
+
+    <div id="tablesModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+        <div class="dive" ng-include="vm.template"></div>
+    </div>
+</div>
+
