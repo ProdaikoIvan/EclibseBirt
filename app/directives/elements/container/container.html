@@ -8,11 +8,10 @@
            'margin-left': vm.element.style['margin-left'] + 'px',
            'border': vm.element.style['border']}">
     <div class="container-element-repeat" ng-repeat="element in vm.element.elements track by $index">
-        <text-block ng-if="element.type === 'textbox'" data-number="$index" data-model="vm.element.elements" data-element="element"></text-block>
+        <label-block ng-if="element.type === 'label'" data-id="element.id" data-model="vm.element.elements" data-element="element"></label-block>
         <table-element ng-if="element.type === 'table'" data-number="$index" data-model="vm.element.elements" data-element="element"></table-element>
+        <grid-element ng-if="element.type === 'grid'" data-number="$index" data-model="vm.element.elements" data-element="element""></grid-element>
     </div>
-
-
 </div>
 
 

@@ -11,7 +11,9 @@
 
 
         return {
-            element: {},
+            element: null,
+            columnStyle:null,
+            rowStyle:null,
             container: null
         }
     }

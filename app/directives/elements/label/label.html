@@ -1,0 +1,24 @@
+<div ng-click="vm.focusContainer(); $event.stopPropagation();">
+    <input class="label-input" ng-class="vm.element.selected ? 'selectedContainer' : ''" ng-model="vm.element.value" type="text"
+           ng-style="{
+                'width':'100%',
+                'margin-top': vm.element.style['marginTop'] + 'px',
+                'margin-right': vm.element.style['marginRight'] + 'px',
+                'margin-bottom': vm.element.style['marginBottom'] + 'px',
+                'margin-left': vm.element.style['marginLeft'] + 'px',
+                'padding-top': vm.element.style['paddingTop'] + 'px',
+                'padding-right': vm.element.style['paddingRight'] + 'px',
+                'padding-bottom': vm.element.style['paddingBottom'] + 'px',
+                'padding-left': vm.element.style['paddingLeft'] + 'px',
+                'text-align': vm.element.style['textAlign'],
+                'border': vm.element.style['border'],
+                'background-color': vm.element.style['backgroundColor'],
+                'color': vm.element.style['color'],
+                'font-weight': vm.element.style['fontWeight'],
+                'font-style': vm.element.style['fontStyle'],
+                'font-size': vm.element.style['fontSize'] + vm.element.style['fontSizeUnit']}">
+</div>
+
+
+
+<!--class="text-box-input {{vm.element.type}}" -->

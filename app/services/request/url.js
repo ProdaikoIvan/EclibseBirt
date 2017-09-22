@@ -5,9 +5,9 @@
         .module('startApp')
         .factory('url', url);
 
-
+// createGrid: 'services/request/grid.json',
     function url() {
-        var server = "http://localhost:8080/http://192.168.1.108:9082/XimpleReportWeb/";
+        var server = "http://localhost:8080/http://192.168.1.110:9082/XimpleReportWeb/";
         var url = {
             login: server + 'login_custom',
             initializedDataSource: server + 'report/new',
@@ -18,7 +18,9 @@
             dataSetCreate: null,
             tableMetadata: server + 'metadata/columns?schemaName=CAPWD_DTA&tableName=',
             saveReport: server + 'report/save',
+            createLabel: server + '/report/label',
 
+            createGrid: server + 'report/grid',
 
             setDataSetCreate: function (id) {
                 if (!this.dataSetCreate) {

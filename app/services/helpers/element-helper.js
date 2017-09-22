@@ -10,7 +10,8 @@
     function elementHelper() {
 
         return {
-            element: null
+            element: null,
+            gridSelect: null
         }
     }
 })();

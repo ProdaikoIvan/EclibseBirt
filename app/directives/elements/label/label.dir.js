@@ -3,21 +3,23 @@
 
     angular
         .module('startApp')
-        .directive('textBlock', textBlock);
+        .directive('labelBlock', labelBlock);
 
-        textBlock.$inject = [];
-    function textBlock() {
+    //
+    labelBlock.$inject = [];
+    function labelBlock() {
         var directive = {
             bindToController: true,
-            controller: 'TextBlockCtrl',
-            templateUrl: "directives/elements/text-block/text-block.html",
+            controller: 'labelCtrl',
+            templateUrl: "directives/elements/label/label.html",
             controllerAs: 'vm',
             replace:true,
             restrict: 'AE',
             scope: {
                 element:'=',
                 model:'=',
-                number:'='
+                id:'=',
+                parent:'='
             },
             compile: compile
         };

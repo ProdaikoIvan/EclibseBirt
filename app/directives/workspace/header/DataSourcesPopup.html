@@ -20,18 +20,20 @@
                             </div>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="checkbox">
-                                <h4>Data Set Name: </h4>
-                            </div>
-                        </td>
-                        <td class="col-md-8">
-                            <div class="form-group" style="margin-bottom: 0">
-                                <input type="text" class="form-control" ng-model="vm.databaseSources.setName">
-                            </div>
-                        </td>
-                    </tr>
+                    <!--<tr>-->
+                        <!--<td class="col-md-4">-->
+                            <!--<div class="checkbox">-->
+                                <!--<h4>Data Set Name: </h4>-->
+                            <!--</div>-->
+                        <!--</td>-->
+                        <!--<td class="col-md-8">-->
+                            <!--<div class="form-group" style="margin-bottom: 0">-->
+                                <!--<input type="text" class="form-control" ng-model="vm.databaseSources.setName">-->
+                            <!--</div>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+
+
                     <!--<tr>-->
                     <!--<td class="col-md-4">-->
                     <!--<div class="checkbox">-->
@@ -116,7 +118,7 @@
                 <!--Next-->
             <!--</button>-->
             <button type="button" class="btn btn-primary" ng-click="vm.databaseSources.dataSourcesConnection()"
-                    ng-disabled="(!vm.databaseSources.name || !vm.databaseSources.setName)">
+                    ng-disabled="(!vm.databaseSources.name)">
                 Next
             </button>
         </div>

@@ -9,12 +9,14 @@
 
     function elementsModel(defaultStyleModel) {
 
+        var positionCnt = 0;
         var idCnt = 0;
         return {
             containerModel: containerModel,
-            textBoxModel: textBoxModel,
+            labelModel: labelModel,
             tableModel: tableModel,
-            tableModelDataSet:tableModelDataSet
+            tableModelDataSet:tableModelDataSet,
+            gridModel: gridModel
         };
 
 
@@ -42,17 +44,17 @@
             };
         }
 
-        function textBoxModel() {
+        function labelModel(id) {
             return {
-                id: ++idCnt,
-                name: 'textbox',
-                type: 'textbox',
-                value: null,
-                style: defaultStyleModel.textModel(),
+                id: id,
+                position:++positionCnt,
+                name: 'label',
+                type: 'label',
+                value: '',
+                style: defaultStyleModel.labelStyleModel(),
                 selected: false,
                 elements: []
             };
-
         }
 
         function tableModelDataSet(obj) {
@@ -150,6 +152,41 @@
                 tableStructure: createTable(),
                 columnNum: column,
                 rowNum: row,
+                style: {
+
+                },
+                selected: false,
+                elements: []
+            };
+        }
+        function gridModel(data) {
+            console.log(data);
+
+            function createGrid() {
+                var gridStructure = {
+                    column:data.columns,
+                    rows:data.rows
+                };
+                for(var i = 0; i< gridStructure.column.length; i++){
+                    gridStructure.column[i].style = defaultStyleModel.gridColumnModel(gridStructure.column.length);
+                }
+                for (var i = 0; i < gridStructure.rows.length; i++) {
+                    gridStructure.rows[i].style = defaultStyleModel.gridRowModel();
+                    for (var j = 0; j < gridStructure.rows[i].cells.length; j++) {
+                        gridStructure.rows[i].cells[j].style = defaultStyleModel.gridCellModel(gridStructure.rows[i].cells.length);
+                    }
+                }
+
+                return gridStructure;
+            }
+
+            return {
+                id: data.id,
+                name: data.elementName,
+                type: 'grid',
+                gridStructure: createGrid(),
+                columnNum: data.columns.length,
+                rowNum: data.rows[0].cells.length,
                 style: {
 
                 },

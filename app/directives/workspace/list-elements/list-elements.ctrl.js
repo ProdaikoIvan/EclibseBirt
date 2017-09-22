@@ -5,22 +5,25 @@
         .module('startApp')
         .controller('listElementsCtrl', listElementsCtrl);
 
-    listElementsCtrl.$inject = ['$scope', 'elementsModel', 'dataServices', 'request', 'url'];
+    listElementsCtrl.$inject = ['$scope', 'elementsModel', 'dataServices', 'request', 'url', 'settingHelper'];
 
-    function listElementsCtrl($scope, elementsModel, dataServices, request, url) {
+    function listElementsCtrl($scope, elementsModel, dataServices, request, url, settingHelper) {
         this.$onInit = function () {
             var vm = this;
 
             vm.templates = [
                 'directives/workspace/list-elements/table.html',
-                'directives/workspace/list-elements/settingTable.html'
+                'directives/workspace/list-elements/settingTable.html',
+                'directives/workspace/list-elements/grid.html'
             ];
             vm.template = vm.templates[0];
 
             vm.addContainer = addContainer;
             vm.addTable = addTable;
             vm.settingTableDataSet = settingTableDataSet;
-            vm.addTextBlock = addTextBlock;
+            vm.addLabel = addLabel;
+            vm.openGridPopup = openGridPopup;
+            vm.addGrid = addGrid;
 
             vm.upRowPosition = upRowPosition;
             vm.downRowPosition = downRowPosition;
@@ -31,6 +34,10 @@
             vm.table = {
                 column: '',
                 row: ''
+            };
+            vm.gridModel = {
+                countColumn: 3,
+                countRow: 3
             };
 
             //vm.tables = dataServices.dataSet;
@@ -47,18 +54,37 @@
                 vm.model.container.push(container);
             }
 
-            function addTextBlock() {
-                var textBox = elementsModel.textBoxModel();
-                for (var i = 0; i < vm.model.container.length; i++) {
-                    if (vm.model.container[i].selected) {
-                        vm.model.container[i].elements.push(textBox);
-                        break;
-                    }
+            function addLabel() {
+                var labelObj = null;
+                if(settingHelper.element!== null){
+                    labelObj= {parentId : settingHelper.element.id};
                 }
+                request.request(url.createLabel, 'POST', null, labelObj).then(function (data) {
+                    var label = elementsModel.labelModel(data.data);
+                    console.log(label);
+                    if(labelObj !== null){
+                        settingHelper.element.childrens.push(label);
+                        return;
+                    }
+                    for (var i = 0; i < vm.model.container.length; i++) {
+                        if (vm.model.container[i].selected) {
+                            vm.model.container[i].elements.push(label);
+                            break;
+                        }
+                    }
+                });
             }
 
             function addTable() {
+                var tableObj = null;
+                if(settingHelper.element!== null){
+                    tableObj= {parentId : settingHelper.element.id};
+                }
                 var table = elementsModel.tableModel(vm.table.column, vm.table.row);
+                if(tableObj !== null){
+                    settingHelper.element.childrens.push(table);
+                    return;
+                }
                 for (var i = 0; i < vm.model.container.length; i++) {
                     if (vm.model.container[i].selected) {
                         vm.model.container[i].elements.push(table);
@@ -82,13 +108,14 @@
                     footer: 1,
                     header: 1,
                     name: vm.selectedTable.tableName,
-                    dataSet: dataServices.dataSetName,
+                    dataSet: vm.selectedTable.dataSetName,
                     computedColumns: []
                 };
                 vm.selectedTable.columns.forEach(function (item) {
                     if (item.selected) {
+                        console.log(item);
                         var row = {
-                            name: item.displayName,
+                            name: item.name,
                             displayName: item.displayName,
                             nativeDataType: item.nativeColumnType
                         };
@@ -96,32 +123,49 @@
                     }
                 });
                 res.col = res.computedColumns.length;
-                console.log(res);
+
+                if(settingHelper.element!== null){
+                    res.parentId = settingHelper.element.id;
+                }
+
                 request.request(url.createTable, 'POST', res).then(function (data) {
+                    console.log(data);
                     var table = elementsModel.tableModelDataSet(data.data);
-                        console.log(table);
+                    if(res.parentId !== null && res.parentId!== undefined){
+                        settingHelper.element.childrens.push(table);
+                    }
+                    else{
                         for (var i = 0; i < vm.model.container.length; i++) {
                             if (vm.model.container[i].selected) {
                                 vm.model.container[i].elements.push(table);
                                 break;
                             }
                         }
+                    }
+                    vm.template = vm.templates[0];
                     $('#tablesModal').modal('hide');
                 }, function (dataError) {
                     console.log(dataError);
                     $('#tablesModal').modal('hide');
                 });
+            }
+            function openGridPopup() {
+                vm.template = vm.templates[2];
+                $('#tablesModal').modal('show');
+            }
+            function addGrid() {
+                $('#tablesModal').modal('hide');
                 vm.template = vm.templates[0];
-                // request.request('services/request/table.json', 'GET').then(function (data) {
-                //     var table = elementsModel.tableModelDataSet(data.data);
-                //     console.log(table);
-                //     for (var i = 0; i < vm.model.container.length; i++) {
-                //         if (vm.model.container[i].selected) {
-                //             vm.model.container[i].elements.push(table);
-                //             break;
-                //         }
-                //     }
-                // });
+                request.request(url.createGrid, 'POST', null, vm.gridModel).then(function (data) {
+                    var grid = elementsModel.gridModel(data.data);
+                    console.log(grid);
+                    for (var i = 0; i < vm.model.container.length; i++) {
+                        if (vm.model.container[i].selected) {
+                            vm.model.container[i].elements.push(grid);
+                            break;
+                        }
+                    }
+                })
             }
 
             function upRowPosition(index) {
@@ -138,6 +182,7 @@
                 vm.selectedTable.columns[index] = tempElement;
             }
 
+
             function table(row, column) {
                 for (var i = 1; i <= column; i++) {
                     vm.maxColumn.push(i);
@@ -148,7 +193,6 @@
             }
 
             active();
-
             function active() {
                 table(100, 100);
                 vm.dataset = dataServices.dataSet;

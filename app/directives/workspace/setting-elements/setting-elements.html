@@ -1,6 +1,8 @@
 <div class="setting-element-container">
     <h3 class="header-setting-element">Setting</h3>
-
+    <div class="container-style-manipulated">
+        <button class="btn btn-info" type="submit" ng-click="vm.saveStyle()">Save changes</button>
+    </div>
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
             <div class="panel-heading" role="tab" class="collapsed" role="button" data-toggle="collapse"
@@ -19,7 +21,6 @@
                             </button>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -32,28 +33,43 @@
             </div>
             <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                 <div class="panel-body">
+                    <div class="size-block">
+                        <h4>Size:</h4>
+                        <div class="element-margin-block">
+                            <div class="row">
+                                <label class="label-margin col-sm-6" for="width">Width: </label>
+                                <input id="width" type="number" class="col-sm-6"
+                                       ng-model="vm.columnStyle['width']">
+                            </div>
+                            <div class="row">
+                                <label class="label-margin col-sm-6" for="height">Height:</label>
+                                <input id="height" type="number" class="col-sm-6"
+                                       ng-model="vm.rowStyle['height']">
+                            </div>
+                        </div>
+                    </div>
                     <div class="margin-block">
                         <h4>Margin:</h4>
                         <div class="element-margin-block">
                             <div class="row">
                                 <label class="label-margin col-sm-6" for="left-margin">Left</label>
                                 <input id="left-margin" type="number" class="col-sm-6"
-                                       ng-model="vm.style['margin-left']">
+                                       ng-model="vm.style['marginLeft']">
                             </div>
                             <div class="row">
                                 <label class="label-margin col-sm-6" for="top-margin">Top</label>
                                 <input id="top-margin" type="number" class="col-sm-6"
-                                       ng-model="vm.style['margin-top']">
+                                       ng-model="vm.style['marginTop']">
                             </div>
                             <div class="row">
                                 <label class="label-margin col-sm-6" for="right-margin">Right</label>
                                 <input id="right-margin" type="number" class="col-sm-6"
-                                       ng-model="vm.style['margin-right']">
+                                       ng-model="vm.style['marginRight']">
                             </div>
                             <div class="row">
                                 <label class="label-margin col-sm-6" for="bottom-margin">Bottom</label>
                                 <input id="bottom-margin" type="number" class="col-sm-6"
-                                       ng-model="vm.style['margin-bottom']">
+                                       ng-model="vm.style['marginBottom']">
                             </div>
                         </div>
                     </div>
@@ -63,35 +79,98 @@
                             <div class="row">
                                 <label class="label-padding col-sm-6" for="left-padding">Left</label>
                                 <input id="left-padding" type="number" class="col-sm-6"
-                                       ng-model="vm.style['padding-left']">
+                                       ng-model="vm.style['paddingLeft']">
                             </div>
                             <div class="row">
                                 <label class="label-padding col-sm-6" for="top-padding">Top</label>
                                 <input id="top-padding" type="number" class="col-sm-6"
-                                       ng-model="vm.style['padding-top']">
+                                       ng-model="vm.style['paddingTop']">
                             </div>
                             <div class="row">
                                 <label class="label-padding col-sm-6" for="right-padding">Right</label>
                                 <input id="right-padding" type="number" class="col-sm-6"
-                                       ng-model="vm.style['padding-bottom']">
+                                       ng-model="vm.style['paddingRight']">
                             </div>
                             <div class="row">
                                 <label class="label-padding col-sm-6" for="bottom-padding">Bottom</label>
                                 <input id="bottom-padding" type="number" class="col-sm-6"
-                                       ng-model="vm.style['padding-right']">
+                                       ng-model="vm.style['paddingBottom']">
                             </div>
                         </div>
                     </div>
-                    <div class="size-block">
-                        <h4>Size:</h4>
-                        <div class="element-size-block">
+                    <div class="border-block">
+                        <h4>Border:</h4>
+                        <div class="element-border-block">
                             <div class="row">
-                                <label class="label-margin col-sm-6" for="width">Width</label>
-                                <input id="width" type="number" ng-model="vm.style.width" class="col-sm-6">
+                                <label class="col-sm-offset-3 col-sm-3">Width</label>
+                                <label class="col-sm-3">Color</label>
+                                <label class="col-sm-3">Style</label>
                             </div>
                             <div class="row">
-                                <label class="label-margin col-sm-6" for="height">Height</label>
-                                <input id="height" type="number" ng-model="vm.style.height" class="col-sm-6">
+                                <div class="col-sm-3">
+                                    <button type="button" class="btn btn-default">
+                                        <span class="top-border border-span"></span>
+                                    </button>
+                                </div>
+                                <div class="col-sm-3">
+                                    <select>
+                                        <option value="" hidden disabled selected>Width</option>
+                                        <option>1px</option>
+                                        <option>2px</option>
+                                    </select>
+                                </div>
+                                <label class="col-sm-3">
+                                    <input class="btn col-sm-12"
+                                           colorpicker
+                                           type="text" colorpicker-position="bottom">
+                                    </input>
+                                </label>
+                                <label class="col-sm-3">Style</label>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <button type="button" class="btn btn-default">
+                                        <span class="right-border border-span"></span>
+                                    </button>
+                                </div>
+                                <label class="col-sm-3">Width</label>
+                                <label class="col-sm-3">
+                                    <input class="btn col-sm-12"
+                                           colorpicker
+                                           type="text" colorpicker-position="bottom">
+                                    </input>
+                                </label>
+                                <label class="col-sm-3">Style</label>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <button type="button" class="btn btn-default">
+                                        <span class="bottom-border border-span"></span>
+                                    </button>
+                                </div>
+                                <label class="col-sm-3">Width</label>
+                                <label class="col-sm-3">
+                                    <input class="btn col-sm-12 button-color-background"
+                                           colorpicker
+                                           type="text" colorpicker-position="bottom">
+                                    </input>
+                                </label>
+                                <label class="col-sm-3">Style</label>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <button type="button" class="btn btn-default">
+                                        <span class="left-border border-span"></span>
+                                    </button>
+                                </div>
+                                <label class="col-sm-3">Width</label>
+                                <label class="col-sm-3">
+                                    <input class="btn col-sm-12 button-color-background"
+                                           colorpicker
+                                           type="text" colorpicker-position="bottom">
+                                    </input>
+                                </label>
+                                <label class="col-sm-3">Style</label>
                             </div>
                         </div>
                     </div>
@@ -100,7 +179,7 @@
                             <label class="col-sm-6">Color</label>
                             <button class="col-sm-6 btn btn-xs" ng-style="{'background': vm.style['background-color']}"
                                     colorpicker type="button" colorpicker-position="left"
-                                    ng-model="vm.style['background-color']">Change
+                                    ng-model="vm.style['backgroundColor']">Change
                             </button>
                         </div>
                     </div>
@@ -121,24 +200,39 @@
                         <h4>Font-align:</h4>
                         <div class="row">
                             <label class="radio-inline" ng-repeat="item in vm.elements.textAlign">
-                                <input type="radio" ng-model="vm.style['text-align']" ng-value="item"
+                                <input type="radio" ng-model="vm.style['textAlign']" ng-value="item"
                                        name="inlineRadioOptions" id="inlineRadio1"> {{item}}
                             </label>
                         </div>
                     </div>
                     <div class="font-color">
                         <div class="row">
-                            <p class="col-sm-6">Color:</p>
-                            <button class="col-sm-6 btn btn-xs" style="background: {{vm.style['color']}}" colorpicker
-                                    type="button" colorpicker-position="bottom" ng-model="vm.style['color']">Change
-                            </button>
+                            <label class="col-sm-6">Color:</label>
+                            <input class="col-sm-6 btn btn-xs" style="background: {{vm.style['color']}}" colorpicker
+                                   type="text" colorpicker-position="bottom" ng-model="vm.style['color']">
+                            </input>
                         </div>
                     </div>
                     <div class="font-size-block">
                         <div class="row">
-                            <label class="col-sm-6" for="top-padding">Font-size</label>
-                            <input type="number" class="col-sm-6"
-                                   ng-model="vm.style['font-size']">
+                            <label class="col-sm-6" for="font-size">Font-size</label>
+                            <input type="number" class="col-sm-6" id="font-size"
+                                   ng-model="vm.style['fontSize']">
+                        </div>
+                    </div>
+                    <div class="font-weight-block">
+                        <div class="row">
+                            <label class="col-sm-6">Font-weight</label>
+                            <button type="button" class="btn btn-default" aria-label="Left Align"
+                                    ng-click="vm.style['fontWeight'] === 'bold'? vm.style['fontWeight'] = 'normal': vm.style['fontWeight'] = 'bold'"
+                                    ng-class="vm.style['fontWeight'] === 'bold'? 'active': ''">
+                                <span class="glyphicon glyphicon glyphicon-bold" aria-hidden="true"></span>
+                            </button>
+                            <button type="button" class="btn btn-default" aria-label="Left Align"
+                                    ng-click="vm.style['fontStyle'] === 'italic'? vm.style['fontStyle'] = 'normal': vm.style['fontStyle'] = 'italic'"
+                                    ng-class="vm.style['fontStyle'] === 'italic'? 'active': ''">
+                                <span class="glyphicon glyphicon glyphicon-italic" aria-hidden="true"></span>
+                            </button>
                         </div>
                     </div>
                 </div>

@@ -19,7 +19,8 @@
                 'directives/workspace/header/tableSelect.html',
                 'directives/workspace/header/tableSetting.html',
                 'directives/workspace/header/DataSourcesPopup.html',
-                'directives/workspace/header/saveReport.html'
+                'directives/workspace/header/saveReport.html',
+                'directives/workspace/header/dataSetPopup.html'
             ];
             vm.connectionResult = [
                 'success',
@@ -42,30 +43,14 @@
                     var paramsSources = {
                         dataSourceName: this.name
                     };
-                    var paramsSet = {
-                        dataSetName: this.setName,
-                        dataSourceName: this.name
-                    };
-                    $rootScope.loaderFlag = true;
+
                     request.request(url.newDataSources, "POST", null, paramsSources).then(function (data) {
-                        request.request(url.dataSet, "GET").then(function (data) {
-                            vm.tables = data.data;
-                            request.request(url.dataSetNew, "POST", null, paramsSet).then(function (data) {
-                                url.setDataSetCreate(data.data);
-                                $rootScope.loaderFlag = false;
-                            }, function (data) {
-                                console.log(data);
-                                $rootScope.loaderFlag = false;
-                            });
-                        }, function (data) {
-                            console.log(data);
-                            $rootScope.loaderFlag = false;
-                        });
+
                         $('#DataSetTablesModal').modal('hide');
                     }, function (data) {
                         console.log(data);
                         vm.connectionMessage = vm.connectionResult[1];
-                        $rootScope.loaderFlag = false;
+
                     });
 
                 },
@@ -80,6 +65,7 @@
             vm.openDataSources = openDataSources;
             vm.settingTablePopup = settingTablePopup;
             vm.backTablePopup = backTablePopup;
+            vm.dataSetConnection = dataSetConnection;
             vm.Finish = Finish;
             vm.saveReportFinish = saveReportFinish;
 
@@ -96,8 +82,32 @@
 
             //DataSet
             function openTablesPopup() {
-                vm.template = vm.templates[0];
+                vm.template = vm.templates[4];
                 $('#DataSetTablesModal').modal('show');
+            }
+
+            function dataSetConnection() {
+
+                $rootScope.loaderFlag = true;
+                var paramsSet = {
+                    dataSetName: vm.databaseSources.setName,
+                    dataSourceName: vm.databaseSources.name
+                };
+                request.request(url.dataSet, "GET").then(function (data) {
+                    vm.tables = data.data;
+                    request.request(url.dataSetNew, "POST", null, paramsSet).then(function (data) {
+                        url.setDataSetCreate(data.data);
+                        $rootScope.loaderFlag = false;
+                        vm.template = vm.templates[0];
+
+                    }, function (data) {
+                        console.log(data);
+                        $rootScope.loaderFlag = false;
+                    });
+                }, function (data) {
+                    console.log(data);
+                    $rootScope.loaderFlag = false;
+                });
             }
 
             function settingTablePopup() {
@@ -121,14 +131,16 @@
                     tableName: vm.selectedTableName,
                     columns: []
                 };
-                console.log(vm.selectedTable);
+
                 var cnt = 1;
+                console.log(vm.selectedTable);
                 vm.selectedTable.forEach(function (item, i, arr) {
                     var obj = {};
+                    console.log(item);
                     if (item.selected) {
                         obj.name = item.columnName;
                         obj.dataType = item.columnType;
-                        obj.analysis = "MEASURE";
+                        obj.analysis = "dimension";
                         obj.nativeName = item.columnName;
                         obj.displayName = item.columnName;
                         obj.position = cnt++;
@@ -136,10 +148,15 @@
                     }
                     vm.columnData.columns.push(obj);
                 });
-
+                console.log(vm.columnData);
                 request.request(url.dataSetCreate, "POST", vm.columnData).then(function (data) {
-
-                    dataServices.dataSet.push(vm.columnData);
+                    var dataSetTable = {
+                        schema: "CAPWD_DTA",
+                        dataSetName: vm.databaseSources.setName,
+                        tableName: vm.selectedTableName,
+                        columns: vm.columnData.columns
+                    };
+                    dataServices.dataSet.push(dataSetTable);
                 }, function (data) {
                     console.log(data);
                 });
@@ -153,13 +170,14 @@
             }
 
             function upRowPosition(index) {
-                var tempElement = vm.selectedTable[index-1];
-                vm.selectedTable[index-1] = vm.selectedTable[index];
+                var tempElement = vm.selectedTable[index - 1];
+                vm.selectedTable[index - 1] = vm.selectedTable[index];
                 vm.selectedTable[index] = tempElement;
             }
+
             function downRowPosition(index) {
-                var tempElement = vm.selectedTable[index+1];
-                vm.selectedTable[index+1] = vm.selectedTable[index];
+                var tempElement = vm.selectedTable[index + 1];
+                vm.selectedTable[index + 1] = vm.selectedTable[index];
                 vm.selectedTable[index] = tempElement;
             }
 
@@ -168,6 +186,7 @@
                 $('#DataSetTablesModal').modal('show');
 
             }
+
             function saveReportFinish() {
                 console.log(vm.fileName);
                 request.request(url.saveReport, 'POST', null, {fileName: vm.fileName}).then(function (data) {

@@ -15,6 +15,7 @@
                 if(vm.number === i){
                     element.selected = true;
                     settingHelper.style = element.style;
+                    settingHelper.element = null;
                 }
                 else{
                     element.selected = false;
