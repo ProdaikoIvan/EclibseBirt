@@ -22,9 +22,9 @@
     background: #555D6B;
     position: relative;
 }
-/*.container-parameters{*/
-    /*width: 300px;*/
-    /*background: #fff;*/
-/*}*/
+
+.container-parameters{
+    height: calc(100vh - 50px);
+}
 
 

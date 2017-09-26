@@ -48,6 +48,7 @@
 
         active();
         function active()  {
+            vm.dataServices = dataServices;
             vm.models = dataServices.models;
             console.log(vm);
         }

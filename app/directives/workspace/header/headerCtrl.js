@@ -5,9 +5,9 @@
         .module('startApp')
         .controller('headerCtrl', headerCtrl);
 
-    headerCtrl.$inject = ['request', 'url', 'elementsModel', 'elementHelper', '$rootScope', 'dataServices'];
+    headerCtrl.$inject = ['request', 'url', 'elementsModel', 'elementHelper', '$rootScope', 'dataServices', '$state'];
 
-    function headerCtrl(request, url, elementsModel, elementHelper, $rootScope, dataServices) {
+    function headerCtrl(request, url, elementsModel, elementHelper, $rootScope, dataServices, $state) {
         this.$onInit = function () {
             var vm = this;
             vm.columnData;
@@ -47,6 +47,7 @@
                     request.request(url.newDataSources, "POST", null, paramsSources).then(function (data) {
 
                         $('#DataSetTablesModal').modal('hide');
+
                     }, function (data) {
                         console.log(data);
                         vm.connectionMessage = vm.connectionResult[1];
@@ -72,6 +73,7 @@
             vm.upRowPosition = upRowPosition;
             vm.downRowPosition = downRowPosition;
             vm.saveReport = saveReport;
+            vm.showReports = showReports;
 
             //Data Sources
             function openDataSources() {
@@ -133,10 +135,8 @@
                 };
 
                 var cnt = 1;
-                console.log(vm.selectedTable);
                 vm.selectedTable.forEach(function (item, i, arr) {
                     var obj = {};
-                    console.log(item);
                     if (item.selected) {
                         obj.name = item.columnName;
                         obj.dataType = item.columnType;
@@ -194,6 +194,22 @@
                     vm.fileName = '';
                     $('#DataSetTablesModal').modal('hide');
                 });
+            }
+
+            function showReports() {
+                request.request(url.showReport, 'POST').then(function (data) {
+                    console.log(data);
+                    go(data);
+                });
+
+                function go(data) {
+                    // var url = $state.href(data.data);
+                    // window.open(url,'_blank');
+                    var x = window.open();
+                    x.document.open();
+                    x.document.write(data.data);
+                    // x.document.close();
+                }
             }
         }
     }
