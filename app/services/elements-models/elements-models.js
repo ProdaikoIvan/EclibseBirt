@@ -114,7 +114,8 @@
             function createTable() {
                 var tableStructure = {
                     head:[],
-                    body:[]
+                    body:[],
+                    footer: []
                 };
                 var rowBlock = [];
                 for (var j = 0; j < column; j++) {
@@ -127,6 +128,8 @@
                     rowBlock.push(columnItem);
                 }
                 tableStructure.head.push(rowBlock);
+
+
                 for (var i = 0; i < row; i++) {
                     var rowBlock = {
                         style: defaultStyleModel.tableRowModel(),
@@ -136,13 +139,25 @@
                         var columnItem = {
                             id: ++idCnt,
                             rowType: 'body',
-                            value: '',
+                            value: headerNames ? '<' + headerNames[j] + '>' : 'Header' + "=" + j,
                             style: defaultStyleModel.tableCellModel()
                         };
                         rowBlock.row.push(columnItem);
                     }
                     tableStructure.body.push(rowBlock)
                 }
+
+                var footerBlock = [];
+                for (var j = 0; j < column; j++) {
+                    var columnItem = {
+                        id: ++idCnt,
+                        rowType: 'footer',
+                        value: headerNames ? headerNames[j] : 'Footer' + "=" + j,
+                        style: defaultStyleModel.tableHeaderModel(column)
+                    };
+                    footerBlock.push(columnItem);
+                }
+                tableStructure.footer.push(rowBlock);
                 return tableStructure;
             }
             return {

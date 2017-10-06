@@ -23,7 +23,7 @@
                 vm.settingTableDataSet = settingTableDataSet;
                 vm.addLabel = addLabel;
                 vm.openGridPopup = openGridPopup;
-                vm.openTablePopup = openTablePopupl
+                vm.openTablePopup = openTablePopupl;
                 vm.addGrid = addGrid;
 
                 vm.backTablePopup = backTablePopup;
@@ -127,16 +127,26 @@
                     };
                     vm.selectedTable.columns.forEach(function (item) {
                         if (item.selected) {
-                            var row = {
-                                name: item.name,
-                                displayName: item.displayName,
-                                nativeDataType: item.nativeColumnType
-                            };
-                            res.computedColumns.push(row);
+                            if(item.hasOwnProperty('item.name')){
+                                var row = {
+                                    name: item.name,
+                                    nativeName: item.nativeName,
+                                    displayName: item.displayName,
+                                    nativeDataType: item.nativeColumnType
+                                };
+                                res.computedColumns.push(row);
+                            }
+                            else{
+                                var row = {
+                                    name: item.nativeName,
+                                    displayName: item.displayName
+                                };
+                                res.computedColumns.push(row);
+                            }
                         }
                     });
                     res.col = res.computedColumns.length;
-
+                    console.log(settingHelper.element);
                     if (settingHelper.element !== null) {
                         res.parentId = settingHelper.element.id;
                     }

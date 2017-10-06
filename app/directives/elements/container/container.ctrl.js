@@ -11,6 +11,7 @@
         var vm = this;
         vm.focusContainer = focusContainer;
         function focusContainer() {
+            settingHelper.element = null;
             vm.model.forEach(function(element,i,c){
                 if(vm.number === i){
                     element.selected = true;

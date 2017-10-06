@@ -1,14 +1,36 @@
-<header class="header-navbar-fixed">
-    <nav>
-        <ul>
-            <li ng-click="vm.openDataSources()"><a href="#">Data Sources</a></li>
-            <li ng-click="vm.openTablesPopup()"><a href="#">Data Set</a></li>
-            <li ng-click="vm.showReports()" style="float:right"><a href="#">Show Report</a></li>
-            <li ng-click="vm.saveReport()" style="float:right"><a class="active" href="#">Save</a></li>
-        </ul>
+    <nav class="navbar navbar-inverse  navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Reporting</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li ng-click="vm.openDataSources()"><a href="#">Data Sources</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Data Set
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li ng-click="vm.openDataSetPopup()"><a href="#">Data Set</a></li>
+                        <li ng-click="vm.openJoinDataSetPopup()"><a href="#">Join Data Set</a></li>
+                    </ul>
+                </li>
+            </ul>
+<!--/vm.saveReport()-->
+            <ul class="nav navbar-nav navbar-right">
+                <li ng-click="vm.showSaveReportPopup()" style="float:right"><a href="#">Show Report</a></li>
+                <li ng-click="vm.saveReport()" style="float:right"><a href="#">Save</a></li>
+                <!--<li class="dropdown">-->
+                    <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>-->
+                    <!--<ul class="dropdown-menu">-->
+                        <!--<li><a href="#">Action</a></li>-->
+                        <!--<li><a href="#">Another action</a></li>-->
+                        <!--<li><a href="#">Something else here</a></li>-->
+                        <!--<li role="separator" class="divider"></li>-->
+                        <!--<li><a href="#">Separated link</a></li>-->
+                    <!--</ul>-->
+                <!--</li>-->
+            </ul>
+        </div>
     </nav>
-</header>
-
 
 <div id="DataSetTablesModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog"
      aria-labelledby="gridSystemModalLabel">

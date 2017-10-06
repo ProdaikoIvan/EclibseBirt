@@ -51,8 +51,12 @@
         }
 
         function saveStyle() {
-            if(settingHelper.container !== null && settingHelper.container.type === 'grid'){
-                save.grid();
+            if(settingHelper.container !== null && settingHelper.container !== 'undefined'){
+
+                if(settingHelper.container.type === 'grid'){
+                    save.grid();
+                }
+
             }
             else{
                 save.label()
