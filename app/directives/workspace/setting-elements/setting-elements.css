@@ -80,3 +80,15 @@
 {
     text-align: center;
 }
+
+.element-border-block > .row > .col-sm-4,
+.element-border-block > .row > .col-sm-3,
+.element-border-block > .row > .col-sm-2
+{
+    padding: 0;
+}
+.element-border-block .btn-border{
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}

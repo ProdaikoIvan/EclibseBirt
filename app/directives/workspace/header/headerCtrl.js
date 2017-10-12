@@ -61,25 +61,68 @@
                 }
             };
 
+            vm.dataSetFilters = {
+                filterList: ['between', 'in', 'bottom-percent', 'bottom-n'],
+                filters: [],
+                flagTemplateValue: 0,
+                tempFirstFilter: '',
+                curentFilter: {
+                    operation: '',
+                    expression: '',
+                    firstPropertyList: [],
+                    secondPropertyList: []
+                },
+                changeOperator: function () {
+                    switch (this.curentFilter.operation) {
+                        case this.filterList[0]:
+                            this.flagTemplateValue = 0;
+                            console.log(1);
+                            break;
+                        case this.filterList[1]:
+                            this.flagTemplateValue = 1;
+                            this.curentFilter.secondPropertyList = [];
+                            this.curentFilter.firstPropertyList = [];
+                            break;
+                        case this.filterList[2]:
+                            this.flagTemplateValue = 0;
+                            console.log(3);
+                            break;
+                        case this.filterList[3]:
+                            this.flagTemplateValue = 0;
+                            console.log(4);
+                            break;
+                    }
+                    console.log(vm.dataSetFilters);
+                },
+                addInValue: function () {
+                    this.curentFilter.firstPropertyList.push(this.tempFirstFilter);
+                    this.tempFirstFilter = '';
+                    console.log(this.curentFilter);
+                },
+                addFilter: function () {
+                    this.filters.push(angular.copy(this.curentFilter));
+                }
+            };
+
             vm.joinDataSet = {
-                firstTable: {},
-                secondTable: {},
+                firstTable: null,
+                secondTable: null,
                 name: "",
-                selectSecondColumn : 0,
-                selectFirstColumn : 0
+                selectSecondColumn: 0,
+                selectFirstColumn: 0
             };
             vm.reportFormatType = ['html', 'xlsx', 'xls', 'pdf'];
             vm.saveReportObj = {
-                'reportName':"html",
+                'reportName': "html",
                 'reportFormat': ''
             };
             vm.selectColumnFirstTable = selectColumnFirstTable;
             vm.selectColumnSecondTable = selectColumnSecondTable;
-            
+
             function selectColumnFirstTable(index) {
                 vm.joinDataSet.selectFirstColumn = index;
             }
-            
+
             function selectColumnSecondTable(index) {
                 vm.joinDataSet.selectSecondColumn = index;
             }
@@ -108,16 +151,19 @@
                 vm.template = vm.templates[2];
                 $('#DataSetTablesModal').modal('show');
             }
+
             //DataSet
             function openDataSetPopup() {
                 vm.template = vm.templates[4];
                 $('#DataSetTablesModal').modal('show');
             }
+
             //JoinDataSet
             function openJoinDataSetPopup() {
                 vm.template = vm.templates[5];
                 $('#DataSetTablesModal').modal('show');
             }
+
             //JoinDataSet
             function openJoinSettingDataTablesPopup() {
                 vm.template = vm.templates[6];
@@ -127,8 +173,8 @@
             function FinishJoin() {
                 //ToDo add property length
                 var joinObj = {
-                    joinType : "inner",
-                    joinOperator : "eq",
+                    joinType: "inner",
+                    joinOperator: "eq",
                     rowFetchLimit: 50,
                     name: vm.joinDataSet.name,
                     firstDsID: vm.joinDataSet.firstTable.id,
@@ -144,14 +190,14 @@
                 // String leftColumn;
                 console.log(joinObj);
                 console.log(vm.joinDataSet);
-                request.request( url.joinDataSet, 'POST', joinObj).then(function (data) {
+                request.request(url.joinDataSet, 'POST', joinObj).then(function (data) {
                     console.log(data);
                     var joinTableObj = refactorObj.joinTablesCreateObj(data.data, vm.joinDataSet.name);
                     dataServices.dataSet.push(joinTableObj);
                 });
                 $('#DataSetTablesModal').modal('hide');
             }
-            
+
             function dataSetConnection() {
                 $rootScope.loaderFlag = true;
                 var paramsSet = {
@@ -191,6 +237,7 @@
             }
 
             function Finish() {
+
                 $('#DataSetTablesModal').modal('hide');
                 vm.columnData = {
                     schema: "CAPWD_DTA",
@@ -222,9 +269,18 @@
                         columns: vm.columnData.columns
                     };
                     dataServices.dataSet.push(dataSetTable);
+
+                    if (vm.dataSetFilters.filters.length > 0) {
+                        console.log(vm.dataSetFilters.filters);
+                        request.request(url.dataSetFilters, "POST", vm.dataSetFilters.filters).then(function (data) {
+                            console.log(data);
+                            vm.dataSetFilters.filters = [];
+                        });
+                    }
                 }, function (data) {
                     console.log(data);
                 });
+
             }
 
             function upRowPosition(index) {
@@ -258,9 +314,10 @@
                 vm.template = vm.templates[7];
                 $('#DataSetTablesModal').modal('show');
             }
+
             function showReports() {
                 console.log(vm.saveReportObj);
-                $window.open('http://192.168.1.100:9082/XimpleReportWeb/reportShow?reportName='+ vm.saveReportObj.reportName+'.rptdesign&reportFormat='+ vm.saveReportObj.reportFormat, '_blank');
+                $window.open('http://192.168.1.100:9082/XimpleReportWeb/reportShow?reportName=' + vm.saveReportObj.reportName + '.rptdesign&reportFormat=' + vm.saveReportObj.reportFormat, '_blank');
                 // request.request(url.showReport, 'POST', null,reportTemp).then(function (data) {
                 //     console.log(data);
                 //     go(data);

@@ -103,80 +103,110 @@
                         <div class="element-border-block">
                             <div class="row">
                                 <label class="col-sm-offset-3 col-sm-3">Width</label>
-                                <label class="col-sm-3">Color</label>
-                                <label class="col-sm-3">Style</label>
+                                <label class="col-sm-4">Color</label>
+                                <label class="col-sm-2">Style</label>
                             </div>
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <button type="button" class="btn btn-default">
+                                    <div class="btn btn-border" ng-click="vm.switchBorder('top')">
                                         <span class="top-border border-span"></span>
-                                    </button>
+                                    </div>
                                 </div>
                                 <div class="col-sm-3">
-                                    <select>
-                                        <option value="" hidden disabled selected>Width</option>
-                                        <option>1px</option>
-                                        <option>2px</option>
-                                    </select>
+                                    <select ng-options="bw for bw in vm.elements.borderWidth"
+                                            ng-init="vm.style['borderTopWidth'] = vm.elements.borderWidth[0]"
+                                            ng-model="vm.style['borderTopWidth']"></select>
                                 </div>
-                                <label class="col-sm-3">
+                                <label class="col-sm-4">
                                     <input class="btn col-sm-12"
                                            colorpicker
+                                           ng-model="vm.style['borderTopColor']"
                                            type="text" colorpicker-position="bottom">
                                     </input>
                                 </label>
-                                <label class="col-sm-3">Style</label>
+                                <div class="col-sm-2">
+                                    <select ng-options="bs for bs in vm.elements.borderStyle"
+                                            ng-init="vm.style['borderTopStyle'] = vm.elements.borderStyle[0]"
+                                            ng-model="vm.style['borderTopStyle']"></select>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <button type="button" class="btn btn-default">
+                                    <div class="btn btn-border" ng-click="vm.switchBorder('right')">
                                         <span class="right-border border-span"></span>
-                                    </button>
+                                    </div>
                                 </div>
-                                <label class="col-sm-3">Width</label>
-                                <label class="col-sm-3">
+                                <div class="col-sm-3">
+                                    <select ng-options="bw for bw in vm.elements.borderWidth"
+                                            ng-init="vm.style['borderRightWidth'] = vm.elements.borderWidth[0]"
+                                            ng-model="vm.style['borderRightWidth']"></select>
+                                </div>
+                                <label class="col-sm-4">
                                     <input class="btn col-sm-12"
                                            colorpicker
+                                           ng-model="vm.style['borderRightColor']"
                                            type="text" colorpicker-position="bottom">
                                     </input>
                                 </label>
-                                <label class="col-sm-3">Style</label>
+                                <div class="col-sm-2">
+                                    <select ng-options="bs for bs in vm.elements.borderStyle"
+                                            ng-init="vm.style['borderRightStyle'] = vm.elements.borderStyle[0]"
+                                            ng-model="vm.style['borderRightStyle']"></select>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <button type="button" class="btn btn-default">
+                                    <div  class="btn btn-border" ng-click="vm.switchBorder('bottom')">
                                         <span class="bottom-border border-span"></span>
-                                    </button>
+                                    </div>
                                 </div>
-                                <label class="col-sm-3">Width</label>
-                                <label class="col-sm-3">
-                                    <input class="btn col-sm-12 button-color-background"
+                                <div class="col-sm-3">
+                                    <select ng-options="bw for bw in vm.elements.borderWidth"
+                                            ng-init="vm.style['borderBottomWidth'] = vm.elements.borderWidth[0]"
+                                            ng-model="vm.style['borderBottomWidth']"></select>
+                                </div>
+                                <label class="col-sm-4">
+                                    <input class="btn col-sm-12"
                                            colorpicker
+                                           ng-model="vm.style['borderBottomColor']"
                                            type="text" colorpicker-position="bottom">
                                     </input>
                                 </label>
-                                <label class="col-sm-3">Style</label>
+                                <div class="col-sm-2">
+                                    <select ng-options="bs for bs in vm.elements.borderStyle"
+                                            ng-init="vm.style['borderBottomStyle'] = vm.elements.borderStyle[0]"
+                                            ng-model="vm.style['borderBottomStyle']"></select>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <button type="button" class="btn btn-default">
+                                    <div  class="btn btn-border"  ng-click="vm.switchBorder('left')">
                                         <span class="left-border border-span"></span>
-                                    </button>
+                                    </div>
                                 </div>
-                                <label class="col-sm-3">Width</label>
-                                <label class="col-sm-3">
-                                    <input class="btn col-sm-12 button-color-background"
+                                <div class="col-sm-3">
+                                    <select ng-options="bw for bw in vm.elements.borderWidth"
+                                            ng-init="vm.style['borderLeftWidth'] = vm.elements.borderWidth[0]"
+                                            ng-model="vm.style['borderLeftWidth']"></select>
+                                </div>
+                                <label class="col-sm-4">
+                                    <input class="btn col-sm-12"
                                            colorpicker
+                                           ng-model="vm.style['borderLeftColor']"
                                            type="text" colorpicker-position="bottom">
                                     </input>
                                 </label>
-                                <label class="col-sm-3">Style</label>
+                                <div class="col-sm-2">
+                                    <select ng-options="bs for bs in vm.elements.borderStyle"
+                                            ng-init="vm.style['borderLeftStyle'] = vm.elements.borderStyle[0]"
+                                            ng-model="vm.style['borderLeftStyle']"></select>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="background">
                         <div class="row">
-                            <label class="col-sm-6">Color</label>
+                            <label class="col-sm-6">Background color</label>
                             <button class="col-sm-6 btn btn-xs" ng-style="{'background': vm.style['background-color']}"
                                     colorpicker type="button" colorpicker-position="left"
                                     ng-model="vm.style['backgroundColor']">Change

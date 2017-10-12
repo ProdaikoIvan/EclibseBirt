@@ -12,10 +12,13 @@
         vm.elements = {
             textAlign: [
                 'left', 'center', 'right'
-            ]
+            ],
+            borderWidth: ['0px', '1px','2px','3px','4px','5px'],
+            borderStyle: ['solid', 'dotted', 'dashed', 'double']
         };
         vm.saveStyle = saveStyle;
         vm.deleteElement = deleteElement;
+        vm.switchBorder = switchBorder;
         //$scope.setting = settingHelper;
 
 
@@ -60,6 +63,16 @@
             }
             else{
                 save.label()
+            }
+        }
+        
+        function switchBorder(side) {
+            console.log(side);
+            switch (side){
+                case 'top': vm.style['borderTopWidth'] = "0px";break;
+                case 'right': vm.style['borderRightWidth'] = "0px";break;
+                case 'bottom': vm.style['borderBottomWidth'] = "0px";break;
+                case 'left': vm.style['borderLeftWidth'] = "0px";break;
             }
         }
     }

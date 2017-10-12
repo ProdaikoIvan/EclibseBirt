@@ -71,7 +71,19 @@
                 'textAlign': 'left',
                 'border': '1px solid #ccc',
                 'backgroundColor': '#ffffff',
-                'color': '#000000'
+                'color': '#000000',
+                'borderTopWidth': '1px',
+                'borderTopColor': '#000000',
+                'borderTopStyle': 'solid',
+                'borderRightWidth': '1px',
+                'borderRightColor': '#000000',
+                'borderRightStyle': 'solid',
+                'borderBottomWidth': '1px',
+                'borderBottomColor': '#000000',
+                'borderBottomStyle': 'solid',
+                'borderLeftWidth': '1px',
+                'borderLeftColor': '#000000',
+                'borderLeftStyle': 'solid'
             }
         }
 

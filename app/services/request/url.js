@@ -5,9 +5,8 @@
         .module('startApp')
         .factory('url', url);
 
-// createGrid: 'services/request/grid.json',
     function url() {
-        var server = "http://localhost:8080/http://192.168.1.100:9082/XimpleReportWeb/";
+        var server = "http://localhost:8080/http://192.168.1.119:9082/XimpleReportWeb/";
         var url = {
             login: server + 'login_custom',
             initializedDataSource: server + 'report/new',
@@ -16,6 +15,7 @@
             dataSetNew: server + 'report/odaDataSet',
             createTable: server + 'report/table/new',
             dataSetCreate: null,
+            dataSetFilters: null,
             joinDataSet: server + 'report/joinDataSet',
             tableMetadata: server + 'metadata/columns?schemaName=CAPWD_DTA&tableName=',
             saveReport: server + 'report/save',
@@ -29,6 +29,7 @@
                     return;
                 }
                 this.dataSetCreate = server + 'report/odaDataSet/' + id + '/fillBaseData';
+                this.dataSetFilters = server + 'report/dataSet/' + id+ '/filters'
             }
         };
         return url;
