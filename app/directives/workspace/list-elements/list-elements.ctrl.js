@@ -31,6 +31,9 @@
                 vm.upRowPosition = upRowPosition;
                 vm.downRowPosition = downRowPosition;
 
+                vm.selectAllRow = selectAllRow;
+                vm.selectNoneRow = selectNoneRow;
+
                 vm.Finish = Finish;
                 vm.maxColumn = [];
                 vm.maxRow = [];
@@ -59,7 +62,7 @@
 
                 function addLabel() {
                     var labelObj = null;
-                    if (settingHelper.element !== null) {
+                    if (settingHelper.element !== null && settingHelper.container.name === 'grid') {
                         labelObj = {parentId: settingHelper.element.id};
                     }
                     request.request(url.createLabel, 'POST', null, labelObj).then(function (data) {
@@ -84,7 +87,7 @@
 
                 function addTable() {
                     var tableObj = null;
-                    if (settingHelper.element !== null) {
+                    if (settingHelper.element !== null  && settingHelper.container.name === 'grid') {
                         tableObj = {parentId: settingHelper.element.id};
                     }
                     var table = elementsModel.tableModel(vm.table.column, vm.table.row);
@@ -147,7 +150,7 @@
                     });
                     res.col = res.computedColumns.length;
                     console.log(settingHelper.element);
-                    if (settingHelper.element !== null) {
+                    if (settingHelper.element !== null && (settingHelper.container != null && settingHelper.container.name === 'grid')) {
                         res.parentId = settingHelper.element.id;
                     }
                     request.request(url.createTable, 'POST', res).then(function (data) {
@@ -192,22 +195,31 @@
                         }
                     })
                 }
-
+                
+                function selectAllRow() {
+                    vm.selectedTable.columns.forEach(function(item,i){
+                        item.selected = true;
+                    });
+                }
+                function selectNoneRow() {
+                    vm.selectedTable.columns.forEach(function(item,i){
+                        item.selected = false;
+                    });
+                }
+                
                 function upRowPosition(index) {
                     console.log(index);
                     var tempElement = vm.selectedTable.columns[index - 1];
                     vm.selectedTable.columns[index - 1] = vm.selectedTable.columns[index];
                     vm.selectedTable.columns[index] = tempElement;
                 }
-
                 function downRowPosition(index) {
                     console.log(index);
                     var tempElement = vm.selectedTable.columns[index + 1];
                     vm.selectedTable.columns[index + 1] = vm.selectedTable.columns[index];
                     vm.selectedTable.columns[index] = tempElement;
                 }
-
-
+                
                 function table(row, column) {
                     for (var i = 1; i <= column; i++) {
                         vm.maxColumn.push(i);
@@ -216,9 +228,7 @@
                         vm.maxRow.push(j);
                     }
                 }
-
                 active();
-
                 function active() {
                     table(100, 100);
                     vm.dataset = dataServices.dataSet;

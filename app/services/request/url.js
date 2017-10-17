@@ -6,7 +6,7 @@
         .factory('url', url);
 
     function url() {
-        var server = "http://localhost:8080/http://192.168.1.119:9082/XimpleReportWeb/";
+        var server = "http://localhost:8080/http://192.168.1.103:9082/XimpleReportWeb/";
         var url = {
             login: server + 'login_custom',
             initializedDataSource: server + 'report/new',

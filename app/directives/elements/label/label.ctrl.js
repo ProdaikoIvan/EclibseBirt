@@ -32,7 +32,8 @@
         function focusActive(element) {
             element.selected = true;
             settingHelper.element = element;
-            settingHelper.container = null;
+            settingHelper.container = element;
+            //settingHelper.container = null;
         }
         function focusInActive(element) {
             element.selected = false;
