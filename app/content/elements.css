@@ -33,3 +33,11 @@
 /*.cell-grid:focus{*/
     /*outline: -webkit-focus-ring-color auto 5px;*/
 /*}*/
+.btn-delete-element{
+    position: absolute;
+    padding: 0 5px;
+    right: -10px;
+    top: -10px;
+    /* visibility: hidden; */
+    display: none;
+}

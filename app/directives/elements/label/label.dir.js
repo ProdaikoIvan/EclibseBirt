@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -6,35 +6,45 @@
         .directive('labelBlock', labelBlock);
 
     //
-    labelBlock.$inject = [];
-    function labelBlock() {
+    labelBlock.$inject = ['request', 'url'];
+
+    function labelBlock(request, url) {
         var directive = {
             bindToController: true,
             controller: 'labelCtrl',
             templateUrl: "directives/elements/label/label.html",
             controllerAs: 'vm',
-            replace:true,
+            replace: true,
             restrict: 'AE',
             scope: {
-                element:'=',
-                model:'=',
-                id:'=',
-                parent:'='
+                element: '=',
+                model: '=',
+                id: '=',
+                parent: '='
             },
-            compile: compile
+            link: link
         };
         return directive;
 
 
-        function compile(element, attributes, transclude){
-            return {
-                pre: function (scope) {
+        function link(scope, elem, attrs) {
+            var scrollable = elem.find('button.btn-delete-element');
+            elem.bind('mouseover', function () {
+                scrollable.css('display', 'block');
+            });
+            elem.bind('mouseleave', function () {
+                scrollable.css('display', 'none');
+            });
 
-                },
-                post: function(scope, element, attributes, controller, transcludeFn){
-
-                }
-            }
+            scrollable.bind('click', function () {
+                //request.request(url.)
+                var el = scope.vm.element;
+                scope.vm.model.forEach(function (item, i) {
+                    if(item.id === el.id){
+                        scope.vm.model.splice(i, 1);
+                    }
+                })
+            })
         }
     }
 })();

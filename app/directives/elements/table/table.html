@@ -1,5 +1,6 @@
+<div style="position: relative;">
+<button class="btn btn-default btn-delete-element" type="button"><i class="fa fa-times" aria-hidden="true"></i></button>
 <table class="table-element">
-
     <!--Table Head -->
     <tr ng-repeat="row in vm.element.tableStructure.head track by $index">
         <th ng-repeat="cell in row  track by $index"
@@ -18,7 +19,6 @@
                               'font-size': cell.style['font-size']}"/>
         </th>
     </tr>
-
     <!--Table Body -->
     <tr ng-repeat="row in vm.element.tableStructure.body track by $index">
         <td ng-repeat="cell in row.row track by $index" ng-click="vm.focusContainer(cell, row);$event.stopPropagation();"
@@ -39,4 +39,4 @@
         </td>
     </tr>
 </table>
-
+</div>

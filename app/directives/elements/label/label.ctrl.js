@@ -5,15 +5,16 @@
         .module('startApp')
         .controller('labelCtrl', labelCtrl);
 
-    labelCtrl.$inject = ['settingHelper', 'dataServices'];
+    //'dataServices'
+    labelCtrl.$inject = ['settingHelper','modelReport'];
 
-    function labelCtrl(settingHelper,dataServices) {
+    function labelCtrl(settingHelper, modelReport) {
         var vm = this;
         console.log(vm);
 
         vm.focusContainer = focusContainer;
         function focusContainer(dataElement) {
-            var data = dataElement ? dataElement : dataServices.models.container[0].elements;
+            var data = dataElement ? dataElement : modelReport.models.container[0].elements;
             data.forEach(function (element) {
                 switch (element.type){
                     case 'label':element.id !== vm.id ? focusInActive(element): focusActive(element); break;

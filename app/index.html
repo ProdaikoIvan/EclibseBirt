@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <!--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">-->
+    <link rel="stylesheet" href="libs/normalize-css/normalize.css">
+    <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="libs/angular-bootstrap-colorpicker/css/colorpicker.min.css">
     <link rel="stylesheet" href="libs/angular-loading-bar/src/loading-bar.css">
@@ -38,6 +39,7 @@
 <!-- Ctrl -->
 <script src="templates/editor/EditorCtrl.js"></script>
 <script src="templates/reportShow/reportShow.js"></script>
+<script src="templates/login/login.ctrl.js"></script>
 
 <!-- Directives -->
 <script src="directives/workspace/header/headerDir.js"></script>
@@ -61,6 +63,19 @@
 
 
 <!--Services-->
+<!--Services Initialize app-->
+<script src="services/initializeData/initializeData.js"></script>
+<!--Services dataSources-->
+<script src="services/initializeData/dataSourcesParams.js"></script>
+<!--Services storage tables-->
+<script src="services/storage/storage.js"></script>
+<!--Services dataSet-->
+<!--<script src="services/dataSet/dataSet.js"></script>-->
+<!--Services addElements-->
+<script src="services/addElements/addElements.js"></script>
+<!--Services modelReport-->
+<script src="services/modelReport/modelReport.js"></script>
+
 <script src="services/elements-models/elements-models.js"></script>
 <script src="services/elements-models/defaultStyleElement.js"></script>
 <script src="services/helpers/style-helper.js"></script>
@@ -68,8 +83,8 @@
 <script src="services/request/url.js"></script>
 <script src="services/request/request.js"></script>
 <script src="services/helpers/delete-element.js"></script>
-<script src="services/helpers/DataServices.js"></script>
-<script src="services/helpers/Saver.js"></script>
+<script src="services/helpers/save-service.js"></script>
 <script src="services/helpers/refactor_obj.js"></script>
+
 </body>
 </html>

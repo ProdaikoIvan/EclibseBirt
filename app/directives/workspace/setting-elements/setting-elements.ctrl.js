@@ -5,9 +5,9 @@
         .module('startApp')
         .controller('SettingCtrl', SettingCtrl);
 
-    SettingCtrl.$inject = ['$scope', 'settingHelper', 'deleteFac', 'request', 'url', 'save'];
+    SettingCtrl.$inject = ['$scope', 'settingHelper', 'deleteFac', 'request', 'url', 'saveQueue'];
 
-    function SettingCtrl($scope, settingHelper, deleteFac, request, url, save) {
+    function SettingCtrl($scope, settingHelper, deleteFac, request, url, saveQueue) {
         var vm = this;
         vm.elements = {
             textAlign: [
@@ -16,7 +16,6 @@
             borderWidth: ['0px', '1px','2px','3px','4px','5px'],
             borderStyle: ['solid', 'dotted', 'dashed', 'double']
         };
-        vm.saveStyle = saveStyle;
         vm.deleteElement = deleteElement;
         vm.switchBorder = switchBorder;
         //$scope.setting = settingHelper;
@@ -34,7 +33,12 @@
             if(newVal.rowStyle !== null){
                 vm.rowStyle = newVal.rowStyle.style;
             }
+
+
+            saveQueue.saveElement(newVal, oldVal);
         }, true);
+
+
         $scope.$watch(function () {
             return settingHelper.element
         }, function (newVal, oldVal) {
@@ -51,19 +55,6 @@
         function deleteElement() {
             deleteFac.element = settingHelper;
             console.log(deleteFac.element);
-        }
-
-        function saveStyle() {
-            if(settingHelper.container !== null && settingHelper.container !== 'undefined'){
-
-                if(settingHelper.container.type === 'grid'){
-                    save.grid();
-                }
-
-            }
-            else{
-                save.label()
-            }
         }
         
         function switchBorder(side) {

@@ -5,11 +5,10 @@
         .module('startApp')
         .controller('EditorCtrl', EditorCtrl);
 
-    EditorCtrl.$inject = ['$scope', '$rootScope', 'elementHelper', 'dataServices', 'deleteFac','settingHelper','dataSet'];
+    EditorCtrl.$inject = ['$scope', 'elementHelper', 'modelReport'];
 
-    function EditorCtrl($scope, $rootScope, elementHelper, dataServices, deleteFac, settingHelper,dataSet) {
+    function EditorCtrl($scope, elementHelper, modelReport ) {
         var vm = this;
-        $rootScope.loaderFlag = false;
 
         $scope.$watch(function () {
             return elementHelper.element
@@ -48,9 +47,9 @@
 
         active();
         function active()  {
-            vm.dataServices = dataServices;
-            vm.models = dataServices.models;
-            console.log(vm);
+            //vm.dataServices = dataServices;
+            vm.models = modelReport.models;
+
         }
     }
 })();

@@ -1,4 +1,6 @@
-<div ng-click="vm.focusContainer(); $event.stopPropagation();">
+<div ng-click="vm.focusContainer(); $event.stopPropagation();" style="position: relative">
+    <button class="btn btn-default btn-delete-element" type="button"><i class="fa fa-times" aria-hidden="true"></i>
+    </button>
     <input class="label-input" ng-class="vm.element.selected ? 'selectedContainer' : ''" ng-model="vm.element.value"
            type="text"
            ng-style="{

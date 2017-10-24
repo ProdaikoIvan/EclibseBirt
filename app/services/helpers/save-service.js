@@ -1,22 +1,46 @@
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('startApp')
-        .factory('save', save);
+        .factory('saveQueue', saveQueue);
 
-        save.$inject = ['settingHelper', 'request', 'url'];
-    function save(settingHelper, request, url) {
-        return{
-            label: labelSave,
-            grid: gridSave
+    saveQueue.$inject = ['request', 'url'];
+
+    function saveQueue(request, url) {
+
+        var tempElement;
+
+        return {
+            saveElement: saveElement,
+            saveLastElement: saveLastElement
         };
-        
-        ////////////////
 
-        function labelSave() {
-            var temp = settingHelper.element;
-            console.log(settingHelper);
+        function saveLastElement() {
+            switch (tempElement.container.type){
+                case 'label': labelSave(tempElement); break;
+                case 'grid': gridSave(tempElement); break;
+            }
+        }
+        function saveElement(newVal, oldVal) {
+            preSaveCheck(newVal, oldVal);
+        }
+
+
+        function preSaveCheck(newVal, oldVal) {
+            if (oldVal.element === null) return false;
+            switch (oldVal.container.type) {
+                case 'label':
+                    labelCheck(newVal, oldVal);
+                    break;
+                case 'grid':
+                    gridCheck(newVal, oldVal);
+                    break;
+            }
+        }
+
+        function labelSave(labelData) {
+            var temp = labelData.element;
             var copy = angular.copy(temp);
             copy.style.fontSize = copy.style.fontSize + copy.style.fontSizeUnit;
             delete copy.style.fontSizeUnit;
@@ -27,16 +51,16 @@
                 "text": copy.value,
                 "properties": copy.style
             };
-            console.log(saveData);
-            request.request(url.createLabel, "PUT", saveData).then(function (data) {
-                console.log(data);
+            return request.request(url.createLabel, "PUT", saveData).then(function (data) {
+                return data;
             });
         }
-        function gridSave() {
-            var copy = angular.copy(settingHelper.container);
+
+        function gridSave(gridData) {
+            var copy = angular.copy(gridData.container);
             var grid = {
                 id: copy.id,
-                children:[]
+                children: []
             };
             copy.gridStructure.column.forEach(function (col) {
                 var colTemp = {
@@ -69,9 +93,26 @@
                     grid.children.push(cellTemp);
                 });
             });
-            request.request(url.createGrid, "PUT", grid).then(function (data) {
+            return request.request(url.createGrid, "PUT", grid).then(function (data) {
                 console.log(data);
+                return data;
             });
+        }
+
+        function labelCheck(newVal, oldVal) {
+            if (newVal.element !== null) {
+                if (newVal.element.id === oldVal.element.id) return false;
+            }
+            labelSave(oldVal);
+            tempElement = newVal;
+        }
+
+        function gridCheck(newVal, oldVal) {
+            if (newVal.element !== null) {
+                if (newVal.container.id === oldVal.container.id) return false;
+            }
+            gridSave(oldVal);
+            tempElement = newVal;
         }
     }
 })();

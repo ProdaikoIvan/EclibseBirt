@@ -3,17 +3,25 @@ angular.module('startApp')
         function ($stateProvider, $urlRouterProvider) {
             $urlRouterProvider.otherwise('/edit');
             $stateProvider
+                .state('login', {
+                    url: '/login',
+                    templateUrl: 'templates/login/login.html',
+                    controller: 'LoginCtrl',
+                    controllerAs: 'vm',
+                    resolve: {
+                        initialData: function (initializeData) {
+                            return initializeData.createNewReport();
+                        }
+                    }
+                })
                 .state('edit', {
                     url: '/edit',
                     templateUrl: 'templates/editor/editor.html',
                     controller: 'EditorCtrl',
                     controllerAs: 'vm',
                     resolve: {
-                        dataSet: function (request, url) {
-                            return null;
-                            // return request.request(url.dataSet, 'GET').then(function (data) {
-                            //     return data;
-                            // });
+                        initialData: function (initializeData) {
+                            return initializeData.createNewReport();
                         }
                     }
                 })

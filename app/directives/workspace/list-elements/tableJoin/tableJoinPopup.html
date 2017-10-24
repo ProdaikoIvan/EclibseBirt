@@ -1,0 +1,53 @@
+<div class="modal-dialog  modal-lg" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="gridSystemModalLabel">Join tables</h4>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-sm-12">
+                        <label>Tables: </label>
+                        <select class="form-control"
+                                ng-model="vm.joinDataSet.firstTable"
+                                ng-change="vm.getColumnsJoinTable(vm.joinDataSet.firstTable, 'first')"
+                                ng-options="option for option in vm.tablesList">
+                        </select>
+                    </div>
+                    <div class="col-sm-12">
+                        <ul class="list-group">
+                            <li ng-click="vm.selectColumnFirstTable($index)"
+                                ng-class="$index === vm.joinDataSet.selectFirstColumn ? 'active': ''" class="list-group-item"
+                                ng-repeat="row in vm.joinDataSet.firstColumns track by $index">{{row.columnName}}</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-sm-12">
+                        <label>Tables: </label>
+                        <select class="form-control"
+                                ng-model="vm.joinDataSet.secondTable"
+                                ng-change="vm.getColumnsJoinTable(vm.joinDataSet.secondTable, 'second')"
+                                ng-options="option for option in vm.tablesList">
+                        </select>
+                    </div>
+                    <div class="col-sm-12">
+                        <ul class="list-group">
+                            <li ng-click="vm.selectColumnSecondTable($index)"
+                                ng-class="$index === vm.joinDataSet.selectSecondColumn ? 'active': ''" class="list-group-item"
+                                ng-repeat="row in vm.joinDataSet.secondColumns track by $index">{{row.columnName}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" ng-click="vm.openJoinTablesSettingPopup()">
+                Next
+            </button>
+        </div>
+    </div>
+</div>

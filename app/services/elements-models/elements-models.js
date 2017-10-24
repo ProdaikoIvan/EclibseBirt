@@ -57,7 +57,7 @@
             };
         }
 
-        function tableModelDataSet(obj) {
+        function tableModelDataSet(obj, dataSetId) {
             function createTable() {
                 var tableStructure = {
                     head: [],
@@ -98,7 +98,8 @@
             }
 
             return {
-                id: ++idCnt,
+                id: obj.id,
+                dataSetID: dataSetId,
                 name: 'table',
                 type: 'table',
                 tableStructure: createTable(),

@@ -3,15 +3,13 @@
 
     angular
         .module('startApp')
-        .factory('ataServices', dataServices);
+        .factory('modelReport', modelReport);
 
-    dataServices.$inject = [];
+    modelReport.$inject = [];
 
-    function dataServices() {
+    function modelReport() {
 
         return {
-            dataSetName:'',
-            dataSourcesName:'',
             dataSet: [],
             models: {
                 container: [
@@ -23,15 +21,11 @@
                             "margin-top": 0,
                             "margin-right": 0,
                             "margin-bottom": 0,
-                            "fontSize": 14,
-                            "font-weight": 600,
-                            "text-align": 'left',
                             "width": 100,
                             "widthUnit": '%',
                             "height": 100,
                             "heightUnit": '%',
-                            "border": '1px solid #cccccc',
-                            "background-color": '#ffffff'
+                            "border": '1px solid #cccccc'
                         },
                         selected: true,
                         elements: []
