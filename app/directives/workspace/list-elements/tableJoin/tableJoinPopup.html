@@ -45,7 +45,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" ng-click="vm.openJoinTablesSettingPopup()">
+            <button type="button" ng-disabled="!vm.joinDataSet.firstColumns.length || !vm.joinDataSet.secondColumns.length" class="btn btn-primary" ng-click="vm.openJoinTablesSettingPopup()">
                 Next
             </button>
         </div>

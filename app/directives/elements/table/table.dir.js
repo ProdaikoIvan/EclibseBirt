@@ -28,15 +28,22 @@
         return directive;
 
         function link(scope, elem, attrs) {
-            var scrollable = elem.find('button.btn-delete-element');
+            var deleteBtn = elem.find('button.btn-delete-element');
+            var editBtn = elem.find('button.btn-edit-element');
+
             elem.bind('mouseover', function () {
-                scrollable.css('display', 'block');
+                deleteBtn.css('display', 'block');
+                editBtn.css('display', 'block');
             });
             elem.bind('mouseleave', function () {
-                scrollable.css('display', 'none');
+                deleteBtn.css('display', 'none');
+                editBtn.css('display', 'none');
             });
-
-            scrollable.bind('click', function () {
+            editBtn.bind('click', function () {
+                var editTemplate = elem.find('div#edit-table');
+                editTemplate.modal('show');
+            });
+            deleteBtn.bind('click', function () {
                 var el = scope.vm.element;
                 request.request(url.createTable+ '/' + el.id, 'DELETE').then(function (data) {
                     console.log(data);
@@ -44,7 +51,7 @@
                         if(item.id === el.id){
                             scope.vm.model.splice(i, 1);
                         }
-                    })
+                    });
                 });
             })
         }

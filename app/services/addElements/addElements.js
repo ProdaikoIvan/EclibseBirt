@@ -48,29 +48,42 @@
             })
         }
 
-        function tableFromDataBase(tableName, tableColumns) {
+        function tableFromDataBase(tableName, tableColumns, tableFilters) {
             var datasetName;
             var dataSetId;
             newDataSet().then(function (data) {
                 datasetName = data.dataSetName;
                 dataSetId = data.dataSetId;
-                return dataSetCreate(tableName, tableColumns)
+                return dataSetCreate(tableName, tableColumns, tableFilters)
             }).then(function (data) {
                 return createTable(datasetName, tableName, tableColumns);
             }).then(function (data) {
-                var table = elementsModel.tableModelDataSet(data.data, dataSetId);
-                if (data.structure.parentId !== null && data.structure.parentId !== undefined) {
-                    settingHelper.element.childrens.push(table);
+                var table = elementsModel.tableModelDataSet(data.data, dataSetId, tableColumns);
+
+                if (tableFilters.length !== 0) {
+                    setFilters(tableFilters).then(function (data) {
+                        table.filters = data;
+                        showTable(table);
+                    });
                 }
                 else {
-                    for (var i = 0; i < modelReport.models.container.length; i++) {
-                        if (modelReport.models.container[i].selected) {
-                            modelReport.models.container[i].elements.push(table);
-                            break;
+                    showTable(table);
+                }
+
+                function showTable(table) {
+                    if (data.structure.parentId !== null && data.structure.parentId !== undefined) {
+                        settingHelper.element.childrens.push(table);
+                    }
+                    else {
+                        for (var i = 0; i < modelReport.models.container.length; i++) {
+                            if (modelReport.models.container[i].selected) {
+                                modelReport.models.container[i].elements.push(table);
+                                break;
+                            }
                         }
                     }
+                    $('#tablesModal').modal('hide');
                 }
-                $('#tablesModal').modal('hide');
             });
         }
 
@@ -117,18 +130,24 @@
                 return createTable(data.dataSetName, "", data.columns);
             }).then(function (data) {
                 joinDataSetId = data.data.id;
-                var table = elementsModel.tableModelDataSet(data.data, data.data.id);
-                if (data.structure.parentId !== null && data.structure.parentId !== undefined) {
-                    settingHelper.element.childrens.push(table);
-                }
-                else {
-                    for (var i = 0; i < modelReport.models.container.length; i++) {
-                        if (modelReport.models.container[i].selected) {
-                            modelReport.models.container[i].elements.push(table);
-                            break;
+
+                showTable(data);
+
+                function showTable(data) {
+                    var table = elementsModel.tableModelDataSet(data.data, data.data.id);
+                    if (data.structure.parentId !== null && data.structure.parentId !== undefined) {
+                        settingHelper.element.childrens.push(table);
+                    }
+                    else {
+                        for (var i = 0; i < modelReport.models.container.length; i++) {
+                            if (modelReport.models.container[i].selected) {
+                                modelReport.models.container[i].elements.push(table);
+                                break;
+                            }
                         }
                     }
                 }
+
                 $('#tablesModal').modal('hide');
             });
         }
@@ -172,13 +191,6 @@
             });
             return request.request(url.dataSetCreate, "POST", columnData).then(function (data) {
                 return data;
-                // if (vm.dataSetFilters.filters.length > 0) {
-                //     console.log(vm.dataSetFilters.filters);
-                //     request.request(url.dataSetFilters, "POST", vm.dataSetFilters.filters).then(function (data) {
-                //         console.log(data);
-                //         vm.dataSetFilters.filters = [];
-                //     });
-                // }
             }, function (data) {
                 console.log(data);
             });
@@ -217,6 +229,17 @@
                 console.log(dataError);
                 $('#tablesModal').modal('hide');
             });
+        }
+
+        function setFilters(filters) {
+            if (filters.length !== 0) {
+                return request.request(url.dataSetFilters, "POST", filters).then(function (filtersData) {
+                    return filters
+                });
+            }
+            else {
+                return [];
+            }
         }
     }
 })();

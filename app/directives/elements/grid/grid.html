@@ -1,4 +1,6 @@
-<div class="container-grid">
+<div class="container-grid" style="position: relative">
+    <button class="btn btn-default btn-delete-element" type="button"><i class="fa fa-times" aria-hidden="true"></i>
+    </button>
     <div class="row-grid" ng-repeat="row in vm.element.gridStructure.rows  track by $index"
          ng-style="{}">
         <div class="cell-grid" ng-repeat="cell in row.cells track by $index"

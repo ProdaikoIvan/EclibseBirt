@@ -11,7 +11,7 @@
     function listElementsCtrl($scope, elementsModel, request, url, settingHelper, addElements, storage) {
         this.$onInit = function () {
             var vm = this;
-
+            vm.selectTableName = "";
             vm.templates = [
                 'directives/workspace/list-elements/table/table.html',
                 'directives/workspace/list-elements/tableFromDataBase/tableFromDataBase.html',
@@ -139,7 +139,7 @@
             }
 
             function createTableFromDataBase() {
-                addElements.tableFromDataBase(vm.selectTableName, vm.tableColumns);
+                addElements.tableFromDataBase(vm.selectTableName, vm.tableColumns, vm.dataSetFilters.filters);
             }
 
             function openJoinTablePopup() {
@@ -148,6 +148,8 @@
             }
 
             function openJoinTablesSettingPopup() {
+                vm.tableColumns.length = 0;
+                vm.tableColumns = vm.tableColumns.concat(vm.joinDataSet.firstColumns, vm.joinDataSet.secondColumns);
                 vm.template = vm.templates[4];
             }
 

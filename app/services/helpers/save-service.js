@@ -17,6 +17,7 @@
         };
 
         function saveLastElement() {
+            if(tempElement=== undefined || !tempElement.hasOwnProperty('container')) return;
             switch (tempElement.container.type){
                 case 'label': labelSave(tempElement); break;
                 case 'grid': gridSave(tempElement); break;

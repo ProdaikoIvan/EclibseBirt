@@ -15,7 +15,8 @@
             containerModel: containerModel,
             labelModel: labelModel,
             tableModel: tableModel,
-            tableModelDataSet:tableModelDataSet,
+            tableColumn: tableColumn,
+            tableModelDataSet: tableModelDataSet,
             gridModel: gridModel
         };
 
@@ -47,7 +48,7 @@
         function labelModel(id) {
             return {
                 id: id,
-                position:++positionCnt,
+                position: ++positionCnt,
                 name: 'label',
                 type: 'label',
                 value: '',
@@ -57,7 +58,8 @@
             };
         }
 
-        function tableModelDataSet(obj, dataSetId) {
+        function tableModelDataSet(obj, dataSetId, tableColumns) {
+            var deleteColumns = [];
             function createTable() {
                 var tableStructure = {
                     head: [],
@@ -65,15 +67,27 @@
                     footer: []
                 };
                 var rowBlock = [];
-                obj.header.rows[0].cells.forEach(function (item) {
-                    console.log(item);
-                    var columnItem = {
-                        id: item.id,
-                        rowType: 'header',
-                        value: item.childrens[0].text,
-                        style: defaultStyleModel.tableHeaderModel( obj.header.rows[0].length)
-                    };
-                    rowBlock.push(columnItem);
+                tableColumns.forEach(function (item, i) {
+                    if (!item.selected) {
+                        deleteColumns.push(item);
+                    }
+                    else{
+                        rowBlock.push(item);
+                    }
+                });
+
+                obj.header.rows[0].cells.forEach(function (item, i) {
+                    rowBlock[i].id = item.id;
+                    rowBlock[i].rowType = 'header';
+                    rowBlock[i].value = item.childrens[0].text;
+                    rowBlock[i].style = defaultStyleModel.tableHeaderModel(obj.header.rows[0].length);
+                    // var columnItem = {
+                    //     id: item.id,
+                    //     rowType: 'header',
+                    //     value: item.childrens[0].text,
+                    //     style: defaultStyleModel.tableHeaderModel(obj.header.rows[0].length)
+                    // };
+                    //rowBlock.push(columnItem);
                 });
                 tableStructure.head.push(rowBlock);
 
@@ -82,7 +96,7 @@
                         style: defaultStyleModel.tableRowModel(),
                         row: []
                     };
-                    
+
                     item.cells.forEach(function (cell) {
                         var columnItem = {
                             id: cell.id,
@@ -94,6 +108,7 @@
                     });
                     tableStructure.body.push(rowBlock);
                 });
+
                 return tableStructure;
             }
 
@@ -107,15 +122,39 @@
                 rowNum: obj.header.rows.length + obj.detail.rows.length + obj.footer.rows.length,
                 style: {},
                 selected: false,
-                elements: []
+                elements: [],
+                deleteColumns : deleteColumns
+            };
+        }
+
+        function tableColumn(item, column) {
+
+            var head = {
+                id: item.headerCells[0].id,
+                rowType:'header',
+                style:defaultStyleModel.tableHeaderModel(5),
+                value:column.displayName
+            };
+
+
+            var body = {
+                id: item.detailCells[0].id,
+                rowType:'body',
+                style: defaultStyleModel.tableCellModel(),
+                value:''
+            };
+
+            return {
+                head: head,
+                body: body
             };
         }
 
         function tableModel(column, row, headerNames) {
             function createTable() {
                 var tableStructure = {
-                    head:[],
-                    body:[],
+                    head: [],
+                    body: [],
                     footer: []
                 };
                 var rowBlock = [];
@@ -161,6 +200,7 @@
                 tableStructure.footer.push(rowBlock);
                 return tableStructure;
             }
+
             return {
                 id: ++idCnt,
                 name: 'table',
@@ -168,22 +208,21 @@
                 tableStructure: createTable(),
                 columnNum: column,
                 rowNum: row,
-                style: {
-
-                },
+                style: {},
                 selected: false,
                 elements: []
             };
         }
+
         function gridModel(data) {
             console.log(data);
 
             function createGrid() {
                 var gridStructure = {
-                    column:data.columns,
-                    rows:data.rows
+                    column: data.columns,
+                    rows: data.rows
                 };
-                for(var i = 0; i< gridStructure.column.length; i++){
+                for (var i = 0; i < gridStructure.column.length; i++) {
                     gridStructure.column[i].style = defaultStyleModel.gridColumnModel(gridStructure.column.length);
                 }
                 for (var i = 0; i < gridStructure.rows.length; i++) {
@@ -203,9 +242,7 @@
                 gridStructure: createGrid(),
                 columnNum: data.columns.length,
                 rowNum: data.rows[0].cells.length,
-                style: {
-
-                },
+                style: {},
                 selected: false,
                 elements: []
             };

@@ -39,11 +39,15 @@
             scrollable.bind('click', function () {
                 //request.request(url.)
                 var el = scope.vm.element;
-                scope.vm.model.forEach(function (item, i) {
-                    if(item.id === el.id){
-                        scope.vm.model.splice(i, 1);
-                    }
-                })
+
+                request.request(url.createLabel+ '/' + el.id, 'DELETE').then(function (data) {
+                    console.log(data);
+                    scope.vm.model.forEach(function (item, i) {
+                        if(item.id === el.id){
+                            scope.vm.model.splice(i, 1);
+                        }
+                    })
+                });
             })
         }
     }

@@ -12,10 +12,9 @@
 
 
 
-        function focusContainer(cell,row) {
-            console.log(cell, row);
+        function focusContainer(cell,container) {
             settingHelper.element = cell;
-            settingHelper.container = row;
+            settingHelper.container = container;
         }
     }
 })();
