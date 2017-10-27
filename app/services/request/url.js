@@ -8,7 +8,7 @@
     function url() {
 
         var proxy = "http://localhost:8080/";
-        var serv = 'http://192.168.1.100:9082/XimpleReportWeb/';
+        var serv = 'http://192.168.1.118:9082/XimpleReportWeb/';
         var server = proxy + serv;
 
         var url = {
@@ -21,6 +21,7 @@
             dataSetCreate: null,
             dataSetFilters: null,
             joinDataSet: server + 'report/joinDataSet',
+            getConfigJoin: server + 'metadata/joinTables',
             tableMetadata: server + 'metadata/columns?schemaName=CAPWD_DTA&tableName=',
             saveReport: server + 'report/save',
             createLabel: server + 'report/label',
@@ -32,7 +33,7 @@
                     return;
                 }
                 this.dataSetCreate = server + 'report/odaDataSet/' + id + '/fillBaseData';
-                this.dataSetFilters = server + 'report/dataSet/' + id + '/filters'
+                this.dataSetFilters = server + 'report/filters/' + id;
             },
             showReport: function (reportName, reportType) {
                 return serv + 'reportShow?reportName=' + reportName + '.rptdesign&reportFormat=' + reportType;

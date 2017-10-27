@@ -67,28 +67,35 @@
                     footer: []
                 };
                 var rowBlock = [];
-                tableColumns.forEach(function (item, i) {
-                    if (!item.selected) {
-                        deleteColumns.push(item);
-                    }
-                    else{
-                        rowBlock.push(item);
-                    }
-                });
+                if(tableColumns !== undefined){
+                    tableColumns.forEach(function (item, i) {
+                        if (!item.selected) {
+                            deleteColumns.push(item);
+                        }
+                        else{
+                            rowBlock.push(item);
+                        }
+                    });
 
-                obj.header.rows[0].cells.forEach(function (item, i) {
-                    rowBlock[i].id = item.id;
-                    rowBlock[i].rowType = 'header';
-                    rowBlock[i].value = item.childrens[0].text;
-                    rowBlock[i].style = defaultStyleModel.tableHeaderModel(obj.header.rows[0].length);
-                    // var columnItem = {
-                    //     id: item.id,
-                    //     rowType: 'header',
-                    //     value: item.childrens[0].text,
-                    //     style: defaultStyleModel.tableHeaderModel(obj.header.rows[0].length)
-                    // };
-                    //rowBlock.push(columnItem);
-                });
+                    obj.header.rows[0].cells.forEach(function (item, i) {
+                        rowBlock[i].id = item.id;
+                        rowBlock[i].rowType = 'header';
+                        rowBlock[i].value = item.childrens[0].text;
+                        rowBlock[i].style = defaultStyleModel.tableHeaderModel(obj.header.rows[0].length);
+                    });
+                }
+                else{
+                    obj.header.rows[0].cells.forEach(function (item, i) {
+                        var columnItem = {
+                            id: item.id,
+                            rowType: 'header',
+                            value: item.childrens[0].text,
+                            style: defaultStyleModel.tableHeaderModel(obj.header.rows[0].length)
+                        };
+                        rowBlock.push(columnItem);
+                    });
+                }
+
                 tableStructure.head.push(rowBlock);
 
                 obj.detail.rows.forEach(function (item) {

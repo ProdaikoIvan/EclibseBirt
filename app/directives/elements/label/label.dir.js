@@ -6,9 +6,9 @@
         .directive('labelBlock', labelBlock);
 
     //
-    labelBlock.$inject = ['request', 'url'];
+    labelBlock.$inject = ['request', 'url', 'settingHelper', 'saveQueue'];
 
-    function labelBlock(request, url) {
+    function labelBlock(request, url, settingHelper, saveQueue) {
         var directive = {
             bindToController: true,
             controller: 'labelCtrl',
@@ -37,8 +37,9 @@
             });
 
             scrollable.bind('click', function () {
-                //request.request(url.)
                 var el = scope.vm.element;
+                saveQueue.clearLastElemetn(el.id);
+
 
                 request.request(url.createLabel+ '/' + el.id, 'DELETE').then(function (data) {
                     console.log(data);
@@ -46,7 +47,12 @@
                         if(item.id === el.id){
                             scope.vm.model.splice(i, 1);
                         }
-                    })
+                        if(settingHelper.element !== null && settingHelper.element.id === el.id){
+                            settingHelper.element = null;
+                            settingHelper.container = null;
+                        }
+                    });
+
                 });
             })
         }

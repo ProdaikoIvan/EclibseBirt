@@ -75,7 +75,6 @@
                 });
             }
 
-
             function closePopup() {
                 $('div#edit-table').modal('hide');
             }

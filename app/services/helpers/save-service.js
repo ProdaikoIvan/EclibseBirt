@@ -10,26 +10,39 @@
     function saveQueue(request, url) {
 
         var tempElement;
+        var deletedElement;
 
         return {
+            clearLastElemetn: clearLastElemetn,
             saveElement: saveElement,
             saveLastElement: saveLastElement
         };
 
+        function clearLastElemetn(element) {
+            deletedElement = element;
+            tempElement = null;
+        }
+
         function saveLastElement() {
-            if(tempElement=== undefined || !tempElement.hasOwnProperty('container')) return;
-            switch (tempElement.container.type){
-                case 'label': labelSave(tempElement); break;
-                case 'grid': gridSave(tempElement); break;
+            if (tempElement === undefined || tempElement === null || !tempElement.hasOwnProperty('container')) return;
+            switch (tempElement.container.type) {
+                case 'label':
+                    labelSave(tempElement);
+                    break;
+                case 'grid':
+                    gridSave(tempElement);
+                    break;
             }
         }
+
         function saveElement(newVal, oldVal) {
             preSaveCheck(newVal, oldVal);
         }
 
 
         function preSaveCheck(newVal, oldVal) {
-            if (oldVal.element === null) return false;
+            console.log(deletedElement);
+            if (oldVal.element === null || deletedElement === oldVal.element.id) return false;
             switch (oldVal.container.type) {
                 case 'label':
                     labelCheck(newVal, oldVal);

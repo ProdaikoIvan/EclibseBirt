@@ -13,13 +13,11 @@
             textAlign: [
                 'left', 'center', 'right'
             ],
-            borderWidth: ['0px', '1px','2px','3px','4px','5px'],
+            borderWidth: ['0px', '1px', '2px', '3px', '4px', '5px'],
             borderStyle: ['solid', 'dotted', 'dashed', 'double']
         };
         vm.deleteElement = deleteElement;
         vm.switchBorder = switchBorder;
-        //$scope.setting = settingHelper;
-
 
         $scope.$watch(function () {
             return settingHelper
@@ -27,14 +25,14 @@
             if (newVal.element !== null) {
                 vm.style = newVal.element.style;
             }
-            if(newVal.columnStyle !== null){
+            if (newVal.columnStyle !== null) {
                 vm.columnStyle = newVal.columnStyle.style;
             }
-            if(newVal.rowStyle !== null){
+            if (newVal.rowStyle !== null) {
                 vm.rowStyle = newVal.rowStyle.style;
             }
 
-
+            if (newVal.element === null) return;
             saveQueue.saveElement(newVal, oldVal);
         }, true);
 
@@ -56,14 +54,22 @@
             deleteFac.element = settingHelper;
             console.log(deleteFac.element);
         }
-        
+
         function switchBorder(side) {
             console.log(side);
-            switch (side){
-                case 'top': vm.style['borderTopWidth'] = "0px";break;
-                case 'right': vm.style['borderRightWidth'] = "0px";break;
-                case 'bottom': vm.style['borderBottomWidth'] = "0px";break;
-                case 'left': vm.style['borderLeftWidth'] = "0px";break;
+            switch (side) {
+                case 'top':
+                    vm.style['borderTopWidth'] = "0px";
+                    break;
+                case 'right':
+                    vm.style['borderRightWidth'] = "0px";
+                    break;
+                case 'bottom':
+                    vm.style['borderBottomWidth'] = "0px";
+                    break;
+                case 'left':
+                    vm.style['borderLeftWidth'] = "0px";
+                    break;
             }
         }
     }

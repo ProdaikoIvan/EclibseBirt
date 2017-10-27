@@ -12,16 +12,9 @@
                         <label>Tables: </label>
                         <select class="form-control"
                                 ng-model="vm.joinDataSet.firstTable"
-                                ng-change="vm.getColumnsJoinTable(vm.joinDataSet.firstTable, 'first')"
-                                ng-options="option for option in vm.tablesList">
+                                ng-options="option as option.tableName for option in vm.fromJoinTablesList"
+                                ng-change="vm.getColumnsJoinTable(vm.joinDataSet.firstTable,'first')">
                         </select>
-                    </div>
-                    <div class="col-sm-12">
-                        <ul class="list-group">
-                            <li ng-click="vm.selectColumnFirstTable($index)"
-                                ng-class="$index === vm.joinDataSet.selectFirstColumn ? 'active': ''" class="list-group-item"
-                                ng-repeat="row in vm.joinDataSet.firstColumns track by $index">{{row.columnName}}</li>
-                        </ul>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -30,14 +23,19 @@
                         <select class="form-control"
                                 ng-model="vm.joinDataSet.secondTable"
                                 ng-change="vm.getColumnsJoinTable(vm.joinDataSet.secondTable, 'second')"
-                                ng-options="option for option in vm.tablesList">
+                                ng-options="option.tableName for option in vm.toJoinTablesList">
                         </select>
                     </div>
+                </div>
+                <div class="col-sm-offset-3 col-sm-6 columns-join">
                     <div class="col-sm-12">
                         <ul class="list-group">
-                            <li ng-click="vm.selectColumnSecondTable($index)"
-                                ng-class="$index === vm.joinDataSet.selectSecondColumn ? 'active': ''" class="list-group-item"
-                                ng-repeat="row in vm.joinDataSet.secondColumns track by $index">{{row.columnName}}</li>
+                            <li ng-click="vm.changeJoinColumn($index)"
+                                ng-class="row.joinColumn === vm.joinDataSet.selectFirstColumn ? 'active': ''"
+                                class="list-group-item"
+                                ng-repeat="row in vm.columnsJoin">
+                                <h4><span class="label label-default">{{row.joinColumn}}</span><i class="fa fa-angle-double-right" aria-hidden="true"></i><span class="label label-default">{{row.inverseJoinColumn}}</span></h4>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -45,7 +43,9 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" ng-disabled="!vm.joinDataSet.firstColumns.length || !vm.joinDataSet.secondColumns.length" class="btn btn-primary" ng-click="vm.openJoinTablesSettingPopup()">
+            <button type="button"
+                    ng-disabled="vm.joinDataSet.selectFirstColumn === null || vm.joinDataSet.selectSecondColumn === null"
+                    class="btn btn-primary" ng-click="vm.openJoinTablesSettingPopup()">
                 Next
             </button>
         </div>

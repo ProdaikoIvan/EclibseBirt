@@ -94,6 +94,7 @@
             var secondDataSetId;
             var joinDataSetName = 'jds' + (++dataSetCnt);
             var joinDataSetId;
+            var arrColumns = [];
             newDataSet().then(function (data) {
                 firstDatasetName = data.dataSetName;
                 firstDataSetId = data.dataSetId;
@@ -116,25 +117,30 @@
                     name: joinDataSetName,
                     firstDsID: firstDataSetId,
                     secondDsID: secondDataSetId,
-                    leftColumn: joinData.firstTable,
-                    rightColumn: joinData.secondTable
+                    leftColumn: joinData.selectFirstColumn,
+                    rightColumn: joinData.selectSecondColumn
                 };
                 return request.request(url.joinDataSet, 'POST', joinObj).then(function (data) {
                     return refactorObj.joinTablesCreateObj(data.data, joinDataSetName);
                 });
             }).then(function (data) {
-                var arrColumns = joinData.firstColumns.concat(joinData.secondColumns);
+
+                arrColumns = joinData.firstColumns.concat(joinData.secondColumns);
+                var tempColumns = [];
                 data.columns.forEach(function (item, i) {
                     item.displayName = arrColumns[i].displayName;
+                    item.selected = arrColumns[i].selected;
+                    if(item.selected){
+                        tempColumns.push(item);
+                    }
                 });
-                return createTable(data.dataSetName, "", data.columns);
+
+                return createTable(data.dataSetName, "", tempColumns);
             }).then(function (data) {
                 joinDataSetId = data.data.id;
-
                 showTable(data);
-
                 function showTable(data) {
-                    var table = elementsModel.tableModelDataSet(data.data, data.data.id);
+                    var table = elementsModel.tableModelDataSet(data.data, data.data.id, arrColumns);
                     if (data.structure.parentId !== null && data.structure.parentId !== undefined) {
                         settingHelper.element.childrens.push(table);
                     }

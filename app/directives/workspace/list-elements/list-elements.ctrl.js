@@ -74,6 +74,7 @@
             vm.openJoinTablesSettingPopup = openJoinTablesSettingPopup;
             vm.finishJoinTable = finishJoinTable;
             vm.getColumnsJoinTable = getColumnsJoinTable;
+            vm.changeJoinColumn = changeJoinColumn;
             vm.selectColumnFirstTable = selectColumnFirstTable;
             vm.selectColumnSecondTable = selectColumnSecondTable;
             vm.upRowPosition = upRowPosition;
@@ -95,12 +96,15 @@
             vm.joinDataSet = {
                 firstTable: null,
                 secondTable: null,
-                firstColumns:[],
+                firstColumns: [],
                 secondColumns: [],
                 name: "",
-                selectSecondColumn: 0,
-                selectFirstColumn: 0
+                selectSecondColumn: null,
+                selectFirstColumn: null
             };
+            vm.fromJoinTablesList = [];
+            vm.toJoinTablesList = [];
+            vm.columnsJoin = [];
 
             function addLabel() {
                 addElements.label();
@@ -143,23 +147,52 @@
             }
 
             function openJoinTablePopup() {
+                request.request(url.getConfigJoin, 'GET').then(function (data) {
+                    console.log(data);
+                    vm.fromJoinTablesList = data.data;
+                });
                 vm.template = vm.templates[3];
                 $('#tablesModal').modal('show');
             }
 
-            function openJoinTablesSettingPopup() {
-                vm.tableColumns.length = 0;
-                vm.tableColumns = vm.tableColumns.concat(vm.joinDataSet.firstColumns, vm.joinDataSet.secondColumns);
-                vm.template = vm.templates[4];
+            function getColumnsJoinTable(tableName, table) {
+                switch (table) {
+                    case 'first':
+                        vm.toJoinTablesList = tableName.joinTables;
+                        break;
+                    case 'second':
+                        createDisplayName(tableName);
+                        break;
+                }
+                function createDisplayName(data) {
+                    vm.columnsJoin = data.joinColumns;
+                }
             }
 
-            function getColumnsJoinTable(tableName, table) {
-                request.request(url.tableMetadata + tableName, 'GET').then(function (data) {
-                    console.log(data);
-                    switch (table){
-                        case 'first': vm.joinDataSet.firstColumns = createDisplayName(data.data);break;
-                        case 'second': vm.joinDataSet.secondColumns = createDisplayName(data.data);break;
-                    }
+            function changeJoinColumn(index) {
+                vm.joinDataSet.selectFirstColumn = vm.columnsJoin[index].joinColumn;
+                vm.joinDataSet.selectSecondColumn = vm.columnsJoin[index].inverseJoinColumn;
+            }
+
+            function openJoinTablesSettingPopup() {
+                getColumnsTable(vm.joinDataSet.firstTable.tableName).then(function (data) {
+                    vm.joinDataSet.firstColumns = data;
+                }).then(function () {
+                    getColumnsTable(vm.joinDataSet.secondTable.tableName).then(function (data) {
+                        vm.joinDataSet.secondColumns = data;
+                        vm.tableColumns.length = 0;
+                        vm.tableColumns = vm.tableColumns.concat(vm.joinDataSet.firstColumns, vm.joinDataSet.secondColumns);
+                        vm.template = vm.templates[4];
+                    });
+                });
+            }
+            function getColumnsTable(tableName) {
+                return request.request(url.tableMetadata + tableName, 'GET').then(function (data) {
+                    return createDisplayName(data.data);
+                    // switch (table){
+                    //     case 'first': vm.joinDataSet.firstColumns = createDisplayName(data.data);break;
+                    //     case 'second': vm.joinDataSet.secondColumns = createDisplayName(data.data);break;
+                    // }
                 });
                 function createDisplayName(data) {
                     data.forEach(function (item) {
@@ -171,6 +204,8 @@
             }
 
             function finishJoinTable() {
+                vm.joinDataSet.firstTable = vm.joinDataSet.firstTable.tableName;
+                vm.joinDataSet.secondTable = vm.joinDataSet.secondTable.tableName;
                 addElements.tableJoin(vm.joinDataSet);
                 $('#DataSetTablesModal').modal('hide');
             }
@@ -183,33 +218,12 @@
                 vm.joinDataSet.selectSecondColumn = index;
             }
 
-            // function addTable() {
-            //     var tableObj = null;
-            //     if (settingHelper.element !== null  && settingHelper.container.name === 'grid') {
-            //         tableObj = {parentId: settingHelper.element.id};
-            //     }
-            //     var table = elementsModel.tableModel(vm.table.column, vm.table.row);
-            //     if (tableObj !== null) {
-            //         settingHelper.element.childrens.push(table);
-            //     }
-            //     else {
-            //         for (var i = 0; i < vm.model.container.length; i++) {
-            //             if (vm.model.container[i].selected) {
-            //                 vm.model.container[i].elements.push(table);
-            //                 break;
-            //             }
-            //         }
-            //     }
-            //     $('#tablesModal').modal('hide');
-            //     vm.template = vm.templates[0];
-            // }
-
             function backPopup(id) {
                 vm.template = vm.templates[id];
             }
 
             function selectAllRow(joinFlag) {
-                if(joinFlag){
+                if (joinFlag) {
                     vm.joinDataSet.firstColumns.forEach(function (item) {
                         item.selected = true;
                     });
@@ -224,7 +238,7 @@
             }
 
             function selectNoneRow(joinFlag) {
-                if(joinFlag){
+                if (joinFlag) {
                     vm.joinDataSet.firstColumns.forEach(function (item) {
                         item.selected = false;
                     });
