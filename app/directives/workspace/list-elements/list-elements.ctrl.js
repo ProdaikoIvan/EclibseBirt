@@ -21,7 +21,7 @@
                 'directives/workspace/list-elements/grid/grid.html'
             ];
             vm.dataSetFilters = {
-                filterList: ['between', 'in', 'bottom-percent', 'bottom-n'],
+                filterList: ['between', 'in', 'bottom-percent', 'bottom-n', 'eq'],
                 filters: [],
                 flagTemplateValue: 0,
                 tempFirstFilter: '',

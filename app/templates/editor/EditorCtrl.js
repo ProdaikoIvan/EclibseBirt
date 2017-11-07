@@ -5,11 +5,13 @@
         .module('startApp')
         .controller('EditorCtrl', EditorCtrl);
 
-    EditorCtrl.$inject = ['$scope', 'elementHelper', 'modelReport'];
+    EditorCtrl.$inject = ['$scope', 'elementHelper', 'modelReport','$rootScope', '$state'];
 
-    function EditorCtrl($scope, elementHelper, modelReport ) {
+    function EditorCtrl($scope, elementHelper, modelReport,$rootScope, $state ) {
         var vm = this;
-
+        if($rootScope.isLogined == undefined ||$rootScope.isLogined == false  ){
+            $state.go('login');
+        }
         $scope.$watch(function () {
             return elementHelper.element
         }, function (table, oldTable) {

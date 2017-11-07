@@ -10,7 +10,5 @@
     function ReportShowCtrl($scope, $rootScope) {
         var vm = this;
         $rootScope.loaderFlag = false;
-
-
     }
 })();
