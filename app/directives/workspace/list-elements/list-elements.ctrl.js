@@ -20,7 +20,7 @@
                 'directives/workspace/list-elements/tableJoin/tableJoinSettingPopup.html',
                 'directives/workspace/list-elements/grid/grid.html'
             ];
-            vm.dataSetFilters = {
+            vm.templateFilters = {
                 filterList: ['between', 'in', 'bottom-percent', 'bottom-n', 'eq'],
                 filters: [],
                 flagTemplateValue: 0,
@@ -63,6 +63,8 @@
                 }
             };
 
+
+
             vm.addLabel = addLabel;
             vm.openGridPopup = openGridPopup;
             vm.addGrid = addGrid;
@@ -83,6 +85,12 @@
             vm.selectNoneRow = selectNoneRow;
 
             vm.backPopup = backPopup;
+
+            activate();
+
+            function activate() {
+                vm.dataSetFilters = angular.copy(vm.templateFilters);
+            }
 
             vm.table = {
                 column: '',
@@ -131,15 +139,17 @@
             }
 
             function settingTableDataFromDataBase() {
-                request.request(url.tableMetadata + vm.selectTableName, 'GET').then(function (data) {
-                    console.log(data);
-                    vm.tableColumns = data.data;
-                    vm.tableColumns.forEach(function (item, i, arr) {
-                        item.selected = true;
-                        item.displayName = item.columnName;
+                request.request(url.tableMetadata + vm.selectTableName, 'GET')
+                    .then(function (data) {
+                        console.log(data);
+                        activate();
+                        vm.tableColumns = data.data;
+                        vm.tableColumns.forEach(function (item, i, arr) {
+                            item.selected = true;
+                            item.displayName = item.columnName;
+                        });
+                        vm.template = vm.templates[2];
                     });
-                    vm.template = vm.templates[2];
-                });
             }
 
             function createTableFromDataBase() {
