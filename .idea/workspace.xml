@@ -1,86 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="23fc7c04-9547-4548-a1ba-5ed22966a351" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/proxy/cors-anywhere" afterPath="" />
+    <list default="true" id="23fc7c04-9547-4548-a1ba-5ed22966a351" name="Default" comment="added">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.config.js" afterPath="$PROJECT_DIR$/app/app.config.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.js" afterPath="$PROJECT_DIR$/app/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/content/elements.css" afterPath="$PROJECT_DIR$/app/content/elements.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/content/main.css" afterPath="$PROJECT_DIR$/app/content/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/elements/container/container,dir.js" afterPath="$PROJECT_DIR$/app/directives/elements/container/container,dir.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/elements/container/container.ctrl.js" afterPath="$PROJECT_DIR$/app/directives/elements/container/container.ctrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/elements/container/container.html" afterPath="$PROJECT_DIR$/app/directives/elements/container/container.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/elements/grid/grid.ctrl.js" afterPath="$PROJECT_DIR$/app/directives/elements/grid/grid.ctrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/elements/grid/grid.dir.js" afterPath="$PROJECT_DIR$/app/directives/elements/grid/grid.dir.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/elements/grid/grid.html" afterPath="$PROJECT_DIR$/app/directives/elements/grid/grid.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/elements/label/label.ctrl.js" afterPath="$PROJECT_DIR$/app/directives/elements/label/label.ctrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/elements/label/label.dir.js" afterPath="$PROJECT_DIR$/app/directives/elements/label/label.dir.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/elements/label/label.html" afterPath="$PROJECT_DIR$/app/directives/elements/label/label.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/elements/table/table.ctrl.js" afterPath="$PROJECT_DIR$/app/directives/elements/table/table.ctrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/elements/table/table.dir.js" afterPath="$PROJECT_DIR$/app/directives/elements/table/table.dir.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/elements/table/table.html" afterPath="$PROJECT_DIR$/app/directives/elements/table/table.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/helper/editTable/editTable.Ctrl.js" afterPath="$PROJECT_DIR$/app/directives/helper/editTable/editTable.Ctrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/helper/editTable/editTable.css" afterPath="$PROJECT_DIR$/app/directives/helper/editTable/editTable.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/helper/editTable/editTable.html" afterPath="$PROJECT_DIR$/app/directives/helper/editTable/editTable.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/helper/editTable/editTable.js" afterPath="$PROJECT_DIR$/app/directives/helper/editTable/editTable.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/helper/loader/Loader.css" afterPath="$PROJECT_DIR$/app/directives/helper/loader/Loader.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/helper/loader/Loader.html" afterPath="$PROJECT_DIR$/app/directives/helper/loader/Loader.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/helper/loader/LoaderCtrl.js" afterPath="$PROJECT_DIR$/app/directives/helper/loader/LoaderCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/helper/loader/LoaderDir.js" afterPath="$PROJECT_DIR$/app/directives/helper/loader/LoaderDir.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/workspace/header/header-container.css" afterPath="$PROJECT_DIR$/app/directives/workspace/header/header-container.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/workspace/header/header.html" afterPath="$PROJECT_DIR$/app/directives/workspace/header/header.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/workspace/header/headerCtrl.js" afterPath="$PROJECT_DIR$/app/directives/workspace/header/headerCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/workspace/header/headerDir.js" afterPath="$PROJECT_DIR$/app/directives/workspace/header/headerDir.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/workspace/header/templatesHtml/saveReport.html" afterPath="$PROJECT_DIR$/app/directives/workspace/header/templatesHtml/saveReport.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/workspace/header/templatesHtml/showReport.html" afterPath="$PROJECT_DIR$/app/directives/workspace/header/templatesHtml/showReport.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/workspace/list-elements/grid/grid.html" afterPath="$PROJECT_DIR$/app/directives/workspace/list-elements/grid/grid.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/workspace/list-elements/list-elements.css" afterPath="$PROJECT_DIR$/app/directives/workspace/list-elements/list-elements.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/workspace/list-elements/list-elements.ctrl.js" afterPath="$PROJECT_DIR$/app/directives/workspace/list-elements/list-elements.ctrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/workspace/list-elements/list-elements.dir.js" afterPath="$PROJECT_DIR$/app/directives/workspace/list-elements/list-elements.dir.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/workspace/list-elements/list-elements.html" afterPath="$PROJECT_DIR$/app/directives/workspace/list-elements/list-elements.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/workspace/list-elements/settingTable.html" afterPath="$PROJECT_DIR$/app/directives/workspace/list-elements/settingTable.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/workspace/list-elements/table.html" afterPath="$PROJECT_DIR$/app/directives/workspace/list-elements/table.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/workspace/list-elements/table/table.html" afterPath="$PROJECT_DIR$/app/directives/workspace/list-elements/table/table.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/workspace/list-elements/tableFromDataBase/tableFromDataBase.html" afterPath="$PROJECT_DIR$/app/directives/workspace/list-elements/tableFromDataBase/tableFromDataBase.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/workspace/list-elements/tableFromDataBase/tableFromDataBaseSetting.html" afterPath="$PROJECT_DIR$/app/directives/workspace/list-elements/tableFromDataBase/tableFromDataBaseSetting.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/workspace/list-elements/tableJoin/tableJoinPopup.html" afterPath="$PROJECT_DIR$/app/directives/workspace/list-elements/tableJoin/tableJoinPopup.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/workspace/list-elements/tableJoin/tableJoinSettingPopup.html" afterPath="$PROJECT_DIR$/app/directives/workspace/list-elements/tableJoin/tableJoinSettingPopup.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/workspace/paper-view/paper-view.css" afterPath="$PROJECT_DIR$/app/directives/workspace/paper-view/paper-view.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/workspace/paper-view/paper-view.ctrl.js" afterPath="$PROJECT_DIR$/app/directives/workspace/paper-view/paper-view.ctrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/workspace/paper-view/paper-view.dir.js" afterPath="$PROJECT_DIR$/app/directives/workspace/paper-view/paper-view.dir.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/workspace/paper-view/paper-view.html" afterPath="$PROJECT_DIR$/app/directives/workspace/paper-view/paper-view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/workspace/setting-elements/setting-elements.css" afterPath="$PROJECT_DIR$/app/directives/workspace/setting-elements/setting-elements.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/workspace/setting-elements/setting-elements.ctrl.js" afterPath="$PROJECT_DIR$/app/directives/workspace/setting-elements/setting-elements.ctrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/workspace/setting-elements/setting-elements.dir.js" afterPath="$PROJECT_DIR$/app/directives/workspace/setting-elements/setting-elements.dir.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/workspace/setting-elements/setting-elements.html" afterPath="$PROJECT_DIR$/app/directives/workspace/setting-elements/setting-elements.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index.html" afterPath="$PROJECT_DIR$/app/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/addElements/addElements.js" afterPath="$PROJECT_DIR$/app/services/addElements/addElements.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/dataSet/dataSet.js" afterPath="$PROJECT_DIR$/app/services/dataSet/dataSet.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/elements-models/defaultStyleElement.js" afterPath="$PROJECT_DIR$/app/services/elements-models/defaultStyleElement.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/elements-models/elements-models.js" afterPath="$PROJECT_DIR$/app/services/elements-models/elements-models.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/helpers/DataServices.js" afterPath="$PROJECT_DIR$/app/services/helpers/DataServices.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/helpers/delete-element.js" afterPath="$PROJECT_DIR$/app/services/helpers/delete-element.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/helpers/element-helper.js" afterPath="$PROJECT_DIR$/app/services/helpers/element-helper.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/helpers/refactor_obj.js" afterPath="$PROJECT_DIR$/app/services/helpers/refactor_obj.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/helpers/save-service.js" afterPath="$PROJECT_DIR$/app/services/helpers/save-service.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/helpers/style-helper.js" afterPath="$PROJECT_DIR$/app/services/helpers/style-helper.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/initializeData/dataSourcesParams.js" afterPath="$PROJECT_DIR$/app/services/initializeData/dataSourcesParams.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/initializeData/initializeData.js" afterPath="$PROJECT_DIR$/app/services/initializeData/initializeData.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/modelReport/modelReport.js" afterPath="$PROJECT_DIR$/app/services/modelReport/modelReport.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/request/request.js" afterPath="$PROJECT_DIR$/app/services/request/request.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/request/url.js" afterPath="$PROJECT_DIR$/app/services/request/url.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/storage/storage.js" afterPath="$PROJECT_DIR$/app/services/storage/storage.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/editor/EditorCtrl.js" afterPath="$PROJECT_DIR$/app/templates/editor/EditorCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/editor/editor.css" afterPath="$PROJECT_DIR$/app/templates/editor/editor.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/editor/editor.html" afterPath="$PROJECT_DIR$/app/templates/editor/editor.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/login/login.css" afterPath="$PROJECT_DIR$/app/templates/login/login.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/login/login.ctrl.js" afterPath="$PROJECT_DIR$/app/templates/login/login.ctrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/login/login.html" afterPath="$PROJECT_DIR$/app/templates/login/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/reportShow/reportShow.css" afterPath="$PROJECT_DIR$/app/templates/reportShow/reportShow.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/reportShow/reportShow.html" afterPath="$PROJECT_DIR$/app/templates/reportShow/reportShow.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/reportShow/reportShow.js" afterPath="$PROJECT_DIR$/app/templates/reportShow/reportShow.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -134,16 +60,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="header.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="header.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/directives/workspace/header/header.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="38" lean-forward="true" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
+            <state relative-caret-position="255">
+              <caret line="17" column="6" lean-forward="true" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
               <folding>
                 <element signature="n#style#0;n#li#0;n#ul#0;n#div#0;n#nav#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#li#1;n#ul#0;n#div#0;n#nav#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#li#2;n#ul#0;n#div#0;n#nav#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" column="12" lean-forward="false" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -195,6 +131,7 @@
       <find>new</find>
       <find>defaultStyleModel</find>
       <find>style</find>
+      <find>header</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -252,11 +189,11 @@
         <option value="$PROJECT_DIR$/app/directives/elements/table/table.ctrl.js" />
         <option value="$PROJECT_DIR$/app/directives/elements/table/table.html" />
         <option value="$PROJECT_DIR$/app/directives/setting-elements/setting-elements.ctrl.js" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/app/templates/login/login.ctrl.js" />
         <option value="$PROJECT_DIR$/app/directives/workspace/header/header.html" />
         <option value="$PROJECT_DIR$/app/services/request/url.js" />
         <option value="$PROJECT_DIR$/app/directives/workspace/header/headerCtrl.js" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -410,12 +347,20 @@
       <workItem from="1503578728438" duration="6145000" />
       <workItem from="1509972169868" duration="35000" />
       <workItem from="1509975288239" duration="5444000" />
-      <workItem from="1510066641123" duration="1077000" />
+      <workItem from="1510066641123" duration="1185000" />
     </task>
+    <task id="LOCAL-00001" summary="update project">
+      <created>1510067785140</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1510067785140</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="214628000" />
+    <option name="totallyTimeSpent" value="214736000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="23" width="1922" height="1058" extended-state="6" />
@@ -444,6 +389,12 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="update project" />
+    <option name="LAST_COMMIT_MESSAGE" value="update project" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -632,14 +583,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/login/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -698,13 +641,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/directives/workspace/header/header.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="38" lean-forward="true" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
+        <state relative-caret-position="255">
+          <caret line="17" column="6" lean-forward="true" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
           <folding>
             <element signature="n#style#0;n#li#0;n#ul#0;n#div#0;n#nav#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#li#1;n#ul#0;n#div#0;n#nav#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#li#2;n#ul#0;n#div#0;n#nav#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="12" lean-forward="false" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+          <folding />
         </state>
       </provider>
     </entry>
