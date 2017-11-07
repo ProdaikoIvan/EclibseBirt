@@ -43,7 +43,9 @@
                             this.curentFilter.firstPropertyList = [];
                             break;
                         case this.filterList[2]:
-                            this.flagTemplateValue = 0;
+                            this.flagTemplateValue = 1;
+                            this.curentFilter.secondPropertyList = [];
+                            this.curentFilter.firstPropertyList = [];
                             console.log(3);
                             break;
                         case this.filterList[3]:
