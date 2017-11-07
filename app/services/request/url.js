@@ -8,24 +8,25 @@
     function url() {
 
         var proxy = "http://localhost:8080/";
-        var serv = 'http://192.168.1.118:9082/XimpleReportWeb/';
+        var serv = 'http://192.168.1.128:9083/XimpleReportWeb/';
         var server = proxy + serv;
 
         var url = {
-            login: server + 'login_custom',
-            initializedDataSource: server + 'report/new',
-            newDataSources: server + 'dataSource/newDefault',
-            dataSet: server + 'metadata/tables',
-            dataSetNew: server + 'report/odaDataSet',
-            createTable: server + 'report/table',
-            dataSetCreate: null,
-            dataSetFilters: null,
-            joinDataSet: server + 'report/joinDataSet',
-            getConfigJoin: server + 'metadata/joinTables',
-            tableMetadata: server + 'metadata/columns?schemaName=CAPWD_DTA&tableName=',
-            saveReport: server + 'report/save',
-            createLabel: server + 'report/label',
-            createGrid: server + 'report/grid',
+            login:                  server + 'userLogin',
+            logout:                 server + 'logout',
+            initializedDataSource:  server + 'report/new',
+            newDataSources:         server + 'dataSource/newDefault',
+            dataSet:                server + 'metadata/tables',
+            dataSetNew:             server + 'report/odaDataSet',
+            createTable:            server + 'report/table',
+            dataSetCreate:          null,
+            dataSetFilters:         null,
+            joinDataSet:            server + 'report/joinDataSet',
+            getConfigJoin:          server + 'metadata/joinTables',
+            tableMetadata:          server + 'metadata/columns?schemaName=CAPWD_DTA&tableName=',
+            saveReport:             server + 'report/save',
+            createLabel:            server + 'report/label',
+            createGrid:             server + 'report/grid',
 
             setDataSetCreate: function (id) {
                 if (!id) {
@@ -36,7 +37,24 @@
                 this.dataSetFilters = server + 'report/filters/' + id;
             },
             showReport: function (reportName, reportType) {
-                return serv + 'reportShow?reportName=' + reportName + '.rptdesign&reportFormat=' + reportType;
+                var showURL =server + "reportShow";
+                if(reportName !== "" || reportType !==""){
+                    showURL+="?";
+
+                    var isSet = false;
+                    if(reportName !== ""){
+                        showURL += "reportName=" + reportName;
+                        isSet = true;
+                    }
+                    if(reportType !== ""){
+                        if(isSet){
+                            showURL += "&"
+                        }
+                        showURL += "reportFormat=" + reportType;
+                    }
+                }
+                return showURL;
+                    /*server + 'reportShow?reportName=' + reportName + '.rptdesign&reportFormat=' + reportType*/;
             },
             deleteColumns: function (id) {
                 return server + 'report/table/' + id + '/columns';

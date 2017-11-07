@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="23fc7c04-9547-4548-a1ba-5ed22966a351" name="Default" comment="added">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/workspace/header/header.html" afterPath="$PROJECT_DIR$/app/directives/workspace/header/header.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directives/workspace/header/headerCtrl.js" afterPath="$PROJECT_DIR$/app/directives/workspace/header/headerCtrl.js" />
@@ -347,7 +346,7 @@
       <workItem from="1503578728438" duration="6145000" />
       <workItem from="1509972169868" duration="35000" />
       <workItem from="1509975288239" duration="5444000" />
-      <workItem from="1510066641123" duration="1185000" />
+      <workItem from="1510066641123" duration="1203000" />
     </task>
     <task id="LOCAL-00001" summary="update project">
       <created>1510067785140</created>
@@ -356,11 +355,18 @@
       <option name="project" value="LOCAL" />
       <updated>1510067785140</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="added libs for proxy">
+      <created>1510067843434</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1510067843434</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="214736000" />
+    <option name="totallyTimeSpent" value="214754000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="23" width="1922" height="1058" extended-state="6" />
@@ -394,7 +400,8 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="update project" />
-    <option name="LAST_COMMIT_MESSAGE" value="update project" />
+    <MESSAGE value="added libs for proxy" />
+    <option name="LAST_COMMIT_MESSAGE" value="added libs for proxy" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
