@@ -11,9 +11,8 @@
         vm.login = login;
 
         vm.loginData = {
-            id: "00013",
-            name: "carlos123",
-            password: "carlos123"
+            name: "QVIKTOR",
+            password: "QVIKTOR1234"
         };
 
         function login(){
@@ -25,8 +24,7 @@
             };
             var data = {
                 userName: vm.loginData.name,
-                userPassword: vm.loginData.password,
-                companyId:vm.loginData.id
+                userPassword: vm.loginData.password
             };
 
             request.request(url.login, "POST",{},data,headers)
@@ -37,17 +35,16 @@
                     return true;
                 }
             }, function (dataErr) {
-                    $rootScope.isLogined = false;
-                    toastr.error('Authorization failed','Error',{
-                        timeOut:5000
-                    })
+                $rootScope.isLogined = false;
+                toastr.error('Authorization failed','Error',{
+                    timeOut:5000
+                })
             });
         }
 
         function checkLoginData(){
-            if(vm.loginData.id==="" ||
-                vm.loginData.name === "" ||
-                vm.loginData.password === ""){
+            if(vm.loginData.name === "" ||
+               vm.loginData.password === ""){
                 toastr.error("Please input all data",'Login error', {timeOut:4000});
                 return false;
             }
