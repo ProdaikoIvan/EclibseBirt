@@ -10,6 +10,35 @@
             </div>
             <div class="modal-body">
                 <div class="row">
+                    <div class="col-sm-12">
+                        <table class="table">
+                            <caption>List of filters</caption>
+                            <thead>
+                            <tr>
+                                <th>Expression</th>
+                                <th>Operator</th>
+                                <th>Value 1</th>
+                                <th>Value 2</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="filter in vm.element.filters track by $index">
+                                <th>{{filter.expression}}</th>
+                                <td>{{filter.operation}}</td>
+                                <td>{{filter.firstPropertyList}}</td>
+                                <td>{{filter.secondPropertyList}}</td>
+                                <td>
+                                    <button class=" btn btn-default delete-column-icon"
+                                            ng-click="vm.deleteFilter($index)">
+                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-sm-6">
                         <h3><span class="label label-default">New columns</span></h3>
                         <ul class="list-group">
