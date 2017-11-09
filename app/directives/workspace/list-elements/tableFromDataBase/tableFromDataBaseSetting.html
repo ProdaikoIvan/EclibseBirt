@@ -72,7 +72,7 @@
                             <div class="form-group form-group-sm col-sm-6">
                                 <label class="control-label">Operator</label>
                                 <select class="form-control input-sm"
-                                        ng-init="vm.dataSetFilters.curentFilter.operation = vm.dataSetFilters.filterList"
+                                        ng-init="vm.dataSetFilters.curentFilter.operation = vm.dataSetFilters.filterList[0]"
                                         ng-model="vm.dataSetFilters.curentFilter.operation"
                                         ng-options="operation for operation in vm.dataSetFilters.filterList"
                                         ng-change="vm.dataSetFilters.changeOperator()">

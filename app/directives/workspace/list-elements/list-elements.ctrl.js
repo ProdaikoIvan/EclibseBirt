@@ -20,17 +20,20 @@
                 'directives/workspace/list-elements/tableJoin/tableJoinSettingPopup.html',
                 'directives/workspace/list-elements/grid/grid.html'
             ];
+
+            var filterObject = {
+                operation: '',
+                    expression: '',
+                    firstPropertyList: [],
+                    secondPropertyList: []
+            };
+
             vm.templateFilters = {
                 filterList: ['between', 'in', 'bottom-percent', 'bottom-n', 'eq'],
                 filters: [],
                 flagTemplateValue: 0,
                 tempFirstFilter: '',
-                curentFilter: {
-                    operation: '',
-                    expression: '',
-                    firstPropertyList: [],
-                    secondPropertyList: []
-                },
+                curentFilter: filterObject,
                 changeOperator: function () {
                     switch (this.curentFilter.operation) {
                         case this.filterList[0]:
@@ -64,6 +67,7 @@
                 },
                 addFilter: function () {
                     this.filters.push(angular.copy(this.curentFilter));
+                    this.curentFilter = filterObject;
                 }
             };
 

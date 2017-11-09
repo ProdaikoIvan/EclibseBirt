@@ -11,7 +11,7 @@
                     <label>Tables: </label>
                     <select class="form-control"
                             ng-model="vm.selectTableName"
-                            ng-init="vm.dataSetTable = vm.tablesList[0]"
+                            ng-init="vm.selectTableName = vm.tablesList[0]"
                             ng-options="option for option in vm.tablesList">
                     </select>
                 </div>
@@ -20,7 +20,7 @@
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             <button type="button" class="btn btn-primary" ng-click="vm.settingTableDataFromDataBase()"
-                    ng-disabled="!vm.dataSetTable">Create
+                    ng-disabled="!vm.selectTableName">Create
             </button>
         </div>
     </div>
