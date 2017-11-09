@@ -116,6 +116,14 @@
                                 </li>
                             </ul>
                         </div>
+                        <div class="col-sm-4" ng-if="vm.dataSetFilters.flagTemplateValue === 2">
+                            <div class="form-group form-group-sm">
+                                <label class="control-label">Value</label>
+                                <input class="form-control" type="text"
+                                       ng-model="vm.dataSetFilters.curentFilter.firstPropertyList[0]"
+                                       placeholder="Value">
+                            </div>
+                        </div>
                     </div>
                     <div class="row" ng-if="vm.dataSetFilters.filters.length > 0">
                         <table class="table">

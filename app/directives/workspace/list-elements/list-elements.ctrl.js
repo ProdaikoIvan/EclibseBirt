@@ -43,14 +43,16 @@
                             this.curentFilter.firstPropertyList = [];
                             break;
                         case this.filterList[2]:
-                            this.flagTemplateValue = 1;
-                            this.curentFilter.secondPropertyList = [];
-                            this.curentFilter.firstPropertyList = [];
+                            this.flagTemplateValue = 2;
                             console.log(3);
                             break;
                         case this.filterList[3]:
-                            this.flagTemplateValue = 0;
+                            this.flagTemplateValue = 2;
                             console.log(4);
+                            break;
+                        case this.filterList[3]:
+                            this.flagTemplateValue = 2;
+                            console.log(5);
                             break;
                     }
                     console.log(vm.dataSetFilters);
