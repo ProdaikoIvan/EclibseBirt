@@ -42,7 +42,6 @@
 
 
                 request.request(url.createLabel+ '/' + el.id, 'DELETE').then(function (data) {
-                    console.log(data);
                     scope.vm.model.forEach(function (item, i) {
                         if(item.id === el.id){
                             scope.vm.model.splice(i, 1);

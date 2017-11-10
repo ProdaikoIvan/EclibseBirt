@@ -22,7 +22,6 @@
 
         function tableHeaderModel(column) {
             return {
-                'background-color': '#BBBBBB',
                 'width': 100 / column,
                 'widthUnit': '%',
                 'height': 30,
