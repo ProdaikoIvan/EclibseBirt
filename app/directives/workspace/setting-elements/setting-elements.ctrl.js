@@ -20,7 +20,7 @@
         vm.switchBorder = switchBorder;
 
         $scope.$watch(function () {
-            return settingHelper
+            return settingHelper;
         }, function (newVal, oldVal) {
             if (newVal.element !== null) {
                 vm.style = newVal.element.style;
@@ -32,13 +32,15 @@
                 vm.rowStyle = newVal.rowStyle.style;
             }
 
-            if (newVal.element === null) return;
+            if (newVal.element === null) {
+                return;
+            }
             saveQueue.saveElement(newVal, oldVal);
         }, true);
 
 
         $scope.$watch(function () {
-            return settingHelper.element
+            return settingHelper.element;
         }, function (newVal, oldVal) {
             // if(newVal.element.style !== oldVal.element.style && oldVal.element !== null){
             //     console.warn('save data');
@@ -52,23 +54,21 @@
 
         function deleteElement() {
             deleteFac.element = settingHelper;
-            console.log(deleteFac.element);
         }
 
         function switchBorder(side) {
-            console.log(side);
             switch (side) {
                 case 'top':
-                    vm.style['borderTopWidth'] = "0px";
+                    vm.style.borderTopWidth = "0px";
                     break;
                 case 'right':
-                    vm.style['borderRightWidth'] = "0px";
+                    vm.style.borderRightWidth = "0px";
                     break;
                 case 'bottom':
-                    vm.style['borderBottomWidth'] = "0px";
+                    vm.style.borderBottomWidth = "0px";
                     break;
                 case 'left':
-                    vm.style['borderLeftWidth'] = "0px";
+                    vm.style.borderLeftWidth = "0px";
                     break;
             }
         }

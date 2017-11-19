@@ -20,17 +20,20 @@
                 'directives/workspace/list-elements/tableJoin/tableJoinSettingPopup.html',
                 'directives/workspace/list-elements/grid/grid.html'
             ];
-            vm.dataSetFilters = {
-                filterList: ['between', 'in', 'bottom-percent', 'bottom-n'],
-                filters: [],
-                flagTemplateValue: 0,
-                tempFirstFilter: '',
-                curentFilter: {
-                    operation: '',
+
+            var filterObject = {
+                operation: '',
                     expression: '',
                     firstPropertyList: [],
                     secondPropertyList: []
-                },
+            };
+
+            vm.templateFilters = {
+                filterList: ['between', 'in', 'bottom-percent', 'bottom-n', 'eq'],
+                filters: [],
+                flagTemplateValue: 0,
+                tempFirstFilter: '',
+                curentFilter: filterObject,
                 changeOperator: function () {
                     switch (this.curentFilter.operation) {
                         case this.filterList[0]:
@@ -43,12 +46,16 @@
                             this.curentFilter.firstPropertyList = [];
                             break;
                         case this.filterList[2]:
-                            this.flagTemplateValue = 0;
+                            this.flagTemplateValue = 2;
                             console.log(3);
                             break;
                         case this.filterList[3]:
-                            this.flagTemplateValue = 0;
+                            this.flagTemplateValue = 2;
                             console.log(4);
+                            break;
+                        case this.filterList[3]:
+                            this.flagTemplateValue = 2;
+                            console.log(5);
                             break;
                     }
                     console.log(vm.dataSetFilters);
@@ -60,8 +67,11 @@
                 },
                 addFilter: function () {
                     this.filters.push(angular.copy(this.curentFilter));
+                    this.curentFilter = filterObject;
                 }
             };
+
+
 
             vm.addLabel = addLabel;
             vm.openGridPopup = openGridPopup;
@@ -83,6 +93,12 @@
             vm.selectNoneRow = selectNoneRow;
 
             vm.backPopup = backPopup;
+
+            activate();
+
+            function activate() {
+                vm.dataSetFilters = angular.copy(vm.templateFilters);
+            }
 
             vm.table = {
                 column: '',
@@ -131,15 +147,17 @@
             }
 
             function settingTableDataFromDataBase() {
-                request.request(url.tableMetadata + vm.selectTableName, 'GET').then(function (data) {
-                    console.log(data);
-                    vm.tableColumns = data.data;
-                    vm.tableColumns.forEach(function (item, i, arr) {
-                        item.selected = true;
-                        item.displayName = item.columnName;
+                request.request(url.tableMetadata + vm.selectTableName, 'GET')
+                    .then(function (data) {
+                        console.log(data);
+                        activate();
+                        vm.tableColumns = data.data;
+                        vm.tableColumns.forEach(function (item, i, arr) {
+                            item.selected = true;
+                            item.displayName = item.columnName;
+                        });
+                        vm.template = vm.templates[2];
                     });
-                    vm.template = vm.templates[2];
-                });
             }
 
             function createTableFromDataBase() {

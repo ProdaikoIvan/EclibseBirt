@@ -15,6 +15,6 @@
             columnStyle:null,
             rowStyle:null,
             container: null
-        }
+        };
     }
 })();

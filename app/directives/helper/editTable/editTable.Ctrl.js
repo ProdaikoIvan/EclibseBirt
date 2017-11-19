@@ -14,6 +14,7 @@
             vm.newColumns = [];
 
             vm.deleteColumn = deleteColumn;
+            vm.deleteFilter = deleteFilter;
             vm.addColumn = addColumn;
             vm.closePopup = closePopup;
 
@@ -21,6 +22,19 @@
                 deleteColumnRequest(index).then(function (data) {
                     deleteColumnFromModel(index);
                 });
+            }
+
+            function deleteFilter(index) {
+                var headers = {
+                    'Content-Type': 'application/json'
+                };
+                debugger;
+                request.request(url.dataSetFilters, 'DELETE', [index], {}, headers)
+                    .then(function (data) {
+                        vm.element.filters.splice(index, 1);
+                    }, function (err) {
+                        console.log(err)
+                    });
             }
 
             function addColumn(index) {

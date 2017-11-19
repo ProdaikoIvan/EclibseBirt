@@ -5,9 +5,9 @@
         .module('startApp')
         .controller('headerCtrl', headerCtrl);
 
-    headerCtrl.$inject = ['request', 'url', '$window', 'saveQueue'];
+    headerCtrl.$inject = ['request', 'url', '$window', '$state', '$rootScope', 'saveQueue'];
 //'dataServices',
-    function headerCtrl(request, url, $window, saveQueue) {
+    function headerCtrl(request, url, $window, $state, $rootScope, saveQueue) {
         this.$onInit = function () {
             var vm = this;
             vm.fileName = '';
@@ -21,6 +21,7 @@
             vm.saveReport = saveReport;
             vm.showReports = showReports;
             vm.showSaveReportPopup = showSaveReportPopup;
+            vm.logout = logout;
 
 
 
@@ -95,6 +96,17 @@
             function showReports() {
                 console.log(vm.saveReportObj);
                 $window.open(url.showReport(vm.saveReportObj.reportName, vm.saveReportObj.reportFormat), '_blank');
+            }
+            
+            function logout() {
+                request.request(url.logout, 'GET')
+                    .then(function (data) {
+                        if (data.status === 200) {
+                            $rootScope.isLogined = false;
+                            $state.go('login');
+                            return true;
+                        }
+                    });
             }
         }
     }
